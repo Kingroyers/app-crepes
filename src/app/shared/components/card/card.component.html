@@ -1,0 +1,11 @@
+@for (item of cards; track item) {
+  <ion-card class="carta" [routerLink]="item.direction">
+    <div class="icon-container">
+      <ion-icon [name]="item.icon"></ion-icon>
+    </div>
+    <ion-card-header>
+      <ion-card-title>{{ item.title }}</ion-card-title>
+      <ion-card-subtitle>{{ item.description }}</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+}

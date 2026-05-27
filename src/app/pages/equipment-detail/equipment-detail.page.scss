@@ -1,0 +1,339 @@
+// ─── Paleta – misma que scanner-page e item-management ─────────────────────
+$bg-light:      #F8F6F6;
+$card-bg:       #FFFFFF;
+$text-dark:     #3E2723;
+$accent-brown:  #5D4037;
+$primary-brown: #4E3629;
+$text-muted:    #888;
+$border-radius: 16px;
+
+// Tipos de visita
+$preventivo-bg:  #E8F5E9;
+$preventivo-fg:  #2E7D32;
+$correctivo-bg:  #FFEBEE;
+$correctivo-fg:  #C62828;
+$predictivo-bg:  #E3F2FD;
+$predictivo-fg:  #1565C0;
+$otro-bg:        #F3E5F5;
+$otro-fg:        #6A1B9A;
+
+// ─── Content ───────────────────────────────────────────────────────────────
+ion-content.custom-content {
+  --background: #{$bg-light};
+}
+
+// ─── Toolbar ───────────────────────────────────────────────────────────────
+ion-toolbar.custom-toolbar {
+  --background: #{$bg-light};
+  ion-title {
+    font-weight: 700;
+    color: $primary-brown;
+    font-size: 1.05rem;
+  }
+  ion-back-button { color: $primary-brown; }
+}
+
+// ─── Skeletons ─────────────────────────────────────────────────────────────
+.skeleton-hero {
+  height: 160px;
+  border-radius: $border-radius;
+  margin-bottom: 20px;
+}
+.skeleton-card {
+  height: 120px;
+  border-radius: $border-radius;
+  margin-bottom: 16px;
+  &.short { height: 60px; }
+}
+
+// ─── Hero card ─────────────────────────────────────────────────────────────
+.hero-card {
+  position: relative;
+  height: 175px;
+  border-radius: $border-radius;
+  overflow: hidden;
+  margin-bottom: 20px;
+  background:
+    linear-gradient(to top, rgba($primary-brown, 0.92) 0%, rgba($primary-brown, 0.4) 60%, transparent 100%),
+    url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=600&auto=format&fit=crop') center/cover no-repeat;
+
+  .hero-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 18px 20px;
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+      border: 1px solid rgba(255,255,255,0.3);
+
+      &.activo {
+        background: rgba(46,125,50,0.25);
+        border-color: rgba(46,125,50,0.5);
+      }
+
+      ion-icon { font-size: 0.7rem; }
+    }
+
+    .hero-title {
+      color: #fff;
+      font-size: 1.45rem;
+      font-weight: 700;
+      margin: 0 0 4px;
+      line-height: 1.2;
+    }
+
+    .hero-code {
+      color: rgba(255,255,255,0.65);
+      font-size: 0.78rem;
+      margin: 0;
+      font-family: monospace;
+    }
+  }
+}
+
+// ─── Ficha técnica card ─────────────────────────────────────────────────────
+.detail-card {
+  background: $card-bg;
+  border-radius: $border-radius;
+  padding: 18px 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+
+  .card-section-title {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: $accent-brown;
+    margin-bottom: 16px;
+
+    ion-icon { font-size: 1rem; }
+  }
+
+  .detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 12px;
+
+    .detail-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 0;
+
+      .detail-label {
+        font-size: 0.62rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        color: $text-muted;
+      }
+
+      .detail-value {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: $text-dark;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+
+// ─── Historial section ──────────────────────────────────────────────────────
+.history-section {
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+
+    .section-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: $primary-brown;
+    }
+
+    .history-count {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: $text-muted;
+      background: #EFEBE9;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+  }
+}
+
+// ─── Empty state ────────────────────────────────────────────────────────────
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  background: $card-bg;
+  border-radius: $border-radius;
+
+  ion-icon {
+    font-size: 3rem;
+    color: #D7CCC8;
+    display: block;
+    margin: 0 auto 12px;
+  }
+
+  p {
+    color: $text-muted;
+    font-size: 0.9rem;
+    margin: 0;
+  }
+}
+
+// ─── Visit card ─────────────────────────────────────────────────────────────
+.visit-card {
+  background: $card-bg;
+  border-radius: $border-radius;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  border-left: 4px solid #D7CCC8;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  &:active { transform: scale(0.99); }
+
+  &.preventivo { border-left-color: $preventivo-fg; }
+  &.correctivo { border-left-color: $correctivo-fg; }
+  &.predictivo { border-left-color: $predictivo-fg; }
+  &.otro       { border-left-color: $otro-fg; }
+
+  // ── Header de la card ──────────────────────────────────────────────
+  .visit-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+
+    .visit-type-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.3rem;
+      background: #EFEBE9;
+      color: $accent-brown;
+
+      &.preventivo { background: $preventivo-bg; color: $preventivo-fg; }
+      &.correctivo { background: $correctivo-bg; color: $correctivo-fg; }
+      &.predictivo { background: $predictivo-bg; color: $predictivo-fg; }
+      &.otro       { background: $otro-bg;       color: $otro-fg; }
+    }
+
+    .visit-meta {
+      flex: 1;
+      min-width: 0;
+
+      .visit-type {
+        display: block;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: $text-dark;
+      }
+
+      .visit-date {
+        display: block;
+        font-size: 0.72rem;
+        color: $text-muted;
+        font-weight: 600;
+        margin-top: 2px;
+      }
+    }
+
+    .visit-index {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: $text-muted;
+      background: $bg-light;
+      padding: 3px 8px;
+      border-radius: 10px;
+    }
+  }
+
+  // ── Cuerpo ────────────────────────────────────────────────────────
+  .visit-body {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+
+    .visit-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: $text-dark;
+
+      ion-icon {
+        font-size: 1rem;
+        color: $text-muted;
+        flex-shrink: 0;
+      }
+    }
+
+    .visit-obs {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      background: $bg-light;
+      border-radius: 8px;
+      padding: 10px;
+      margin-top: 4px;
+
+      ion-icon {
+        font-size: 1rem;
+        color: $text-muted;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+
+      p {
+        margin: 0;
+        font-size: 0.82rem;
+        color: $text-dark;
+        line-height: 1.45;
+      }
+    }
+  }
+
+  // ── Footer ────────────────────────────────────────────────────────
+  .visit-footer {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid #F5F0EE;
+    font-size: 0.78rem;
+    color: $text-muted;
+
+    ion-icon { font-size: 0.95rem; color: $accent-brown; }
+
+    strong {
+      color: $accent-brown;
+      margin-left: 2px;
+    }
+  }
+}

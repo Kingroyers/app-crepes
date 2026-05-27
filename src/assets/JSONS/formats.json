@@ -1,0 +1,34 @@
+[
+  {
+    "title": "Chequeo estandarizado",
+    "name" : "chequeo_estandarizado",
+    "department": "sistemas",
+    "description": "Chequeo de calidad estandarizado",
+    "version" : "V1.0",
+    "size" : "141KB"
+  },
+  {
+    "title": "Chequeo estandarizado",
+    "name" : "chequeo_estandarizado",
+    "department": "sst",
+    "description": "Chequeo de calidad estandarizado",
+    "version" : "V1.0",
+    "size" : "141KB"
+  },
+  {
+    "title": "Evaluación de Punto de Venta (PDV)",
+    "name": "Evaluacion_PDV",
+    "department": "operaciones",
+    "description": "Evaluación integral del desempeño operativo, servicio, limpieza, personal, cocina y liderazgo en puntos de venta",
+    "version": "V1.0",
+    "size": "58KB"
+  },
+  {
+    "title": "Verificación de Orden y Limpieza - Almacén",
+    "name": "Verificacion_ordenylimpieza_almacen",
+    "department": "operaciones",
+    "description": "Verificación de condiciones de orden y limpieza en el área de almacén",
+    "version": "V1.0",
+    "size": "272KB"
+  }
+]

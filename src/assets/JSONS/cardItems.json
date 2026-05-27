@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Gestionar Usuarios",
+    "description": "Administrar accesos, roles y estado del personal.",
+    "icon": "people-outline",
+    "direction": "/manage-user"
+  },
+  {
+    "title": "Gestionar Registros",
+    "description": "Ver el historial de visitas a los puntos de venta.",
+    "icon": "folder-open-outline",
+    "direction": "/admin/registros"
+  },
+  {
+    "title": "Añadir Formato",
+    "description": "Subir nuevas plantillas PDF de evaluación.",
+    "icon": "add-outline",
+    "direction": "/admin/formatos"
+  }
+]

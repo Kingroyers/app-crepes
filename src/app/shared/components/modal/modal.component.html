@@ -1,0 +1,51 @@
+<ion-header class="modal-header">
+  <ion-toolbar>
+    <ion-title>Events: {{eventsDate | date:'dd/MM/yyyy' }}</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="closeModal()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="modal-content">
+  <div class="events-wrapper">
+    @for (item of events; track item) {
+      <div class="modal-card" (click)="openDetail(item)">
+        <div class="card-header">
+          <ion-text class="card-title">{{ item.title }}</ion-text>
+          <ion-text class="card-date">
+            {{ item.start | date:'dd MMM yyyy' }}
+          </ion-text>
+        </div>
+        <ion-text class="card-description">
+          {{ item.description }}
+        </ion-text>
+        <div class="card-footer">
+          <ion-text class="card-time">
+            Horario:
+            <strong>
+              {{ item.start | date:'HH:mm' }}
+              -
+              {{ item.end   | date:'HH:mm' }}
+            </strong>
+          </ion-text>
+          <ion-text class="card-department">
+            Área: <strong>{{ item.department }}</strong>
+          </ion-text>
+          <ion-text class="card-place">
+            Lugar: {{ item.pdv }}
+          </ion-text>
+        </div>
+      </div>
+    }
+  </div>
+
+  <ion-infinite-scroll>
+    <ion-infinite-scroll-content disabled="true"></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>
+

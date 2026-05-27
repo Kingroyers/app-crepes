@@ -1,0 +1,201 @@
+ion-menu {
+  --background: #FDFBF7;
+  --width: 290px;
+  --max-width: 85vw;
+}
+
+// ─── Header ────────────────────────────────────────────────────────────────
+.menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 48px 20px 20px;
+  background: #6B4E3D;
+}
+
+.menu-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  background: #FFFFFF;
+  flex-shrink: 0;
+}
+
+.brand-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.brand-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: 0.2px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.brand-sub {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.3px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.close-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease;
+
+  ion-icon {
+    font-size: 20px;
+    color: #FFFFFF;
+  }
+
+  &:active {
+    background: rgba(255, 255, 255, 0.28);
+  }
+}
+
+// ─── Contenido scrolleable ─────────────────────────────────────────────────
+.menu-content {
+  --background: #FDFBF7;
+}
+
+.section-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #9E7B66;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 20px 16px 6px;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.nav-group {
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+// ─── Items de navegación ───────────────────────────────────────────────────
+.nav-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 12px;
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s ease, transform 0.1s ease;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  &:active:not(.nav-item--disabled) {
+    background: rgba(107, 78, 61, 0.08);
+    transform: scale(0.98);
+  }
+
+  &--disabled {
+    cursor: default;
+    opacity: 0.65;
+  }
+}
+
+.nav-icon-wrap {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(107, 78, 61, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  ion-icon {
+    font-size: 20px;
+    color: #6B4E3D;
+  }
+}
+
+.nav-label {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 500;
+  color: #1F1F1F;
+}
+
+.nav-arrow {
+  font-size: 14px;
+  color: #C4A090;
+}
+
+.coming-badge {
+  font-size: 10px;
+  font-weight: 700;
+  color: #9E7B66;
+  background: rgba(107, 78, 61, 0.1);
+  border-radius: 20px;
+  padding: 2px 8px;
+  letter-spacing: 0.3px;
+}
+
+// ─── Footer ────────────────────────────────────────────────────────────────
+.menu-footer {
+  padding: 0 10px 32px;
+}
+
+.footer-divider {
+  height: 1px;
+  background: rgba(107, 78, 61, 0.12);
+  margin: 8px 6px 12px;
+}
+
+.logout-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 12px;
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  ion-icon {
+    font-size: 20px;
+    color: #D9534F;
+    flex-shrink: 0;
+  }
+
+  span {
+    font-size: 15px;
+    font-weight: 500;
+    color: #D9534F;
+  }
+
+  &:active {
+    background: rgba(217, 83, 79, 0.07);
+  }
+}

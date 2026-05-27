@@ -1,0 +1,186 @@
+<ion-header class="visit-header">
+  <ion-toolbar class="visit-toolbar">
+    <ion-buttons slot="start">
+      <button class="back-btn" (click)="goBack()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <div class="header-center">
+      <span class="header-title">Formato de Visita</span>
+      <span class="header-sub">Creación de registro</span>
+    </div>
+
+    <div slot="end" class="logo-wrap">
+      <img src="../../../assets/imgPrueba/crepesLogo.png" alt="Crepes & Waffles" class="brand-logo" />
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-list-header>
+    <ion-label>Datos de la Visita</ion-label>
+  </ion-list-header>
+
+  <ion-card>
+
+    <ion-card-content>
+
+      <form class="formVisit" [formGroup]="formVisit">
+        <ion-item>
+          <app-input label="Responsable" type="text" [control]="responsible"
+            [isReadonly]="data.responsible ? true : false">
+          </app-input>
+        </ion-item>
+
+
+        <ion-item>
+          <app-select label="Lugar" id="pdvs" [control]="pdv">
+          </app-select>
+        </ion-item>
+
+
+        <ion-item>
+          <app-input label="Hora de creación" type="text" [control]="madeAt"
+            [isReadonly]="data.responsible ? true : false">
+          </app-input>
+        </ion-item>
+
+
+        <ion-item>
+          <app-input label="Formato utilizado" type="text" [control]="usedPdf"
+            [isReadonly]="data.responsible ? true : false">
+          </app-input>
+        </ion-item>
+
+      </form>
+    </ion-card-content>
+
+  </ion-card>
+
+  <form [formGroup]="dinamicForm" (ngSubmit)="generarPDF()">
+
+
+    <ion-list-header class="ion-margin-top">
+      <ion-label>{{title}}</ion-label>
+    </ion-list-header>
+
+    @if (cargando) {
+    <div class="ion-text-center ion-padding">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Cargando formato...</p>
+    </div>
+    }
+
+    @if (!cargando) {
+    @for (item of itemsEvaluacion; track item.id) {
+    <ion-card class="ion-margin-bottom">
+      <ion-card-content>
+        <p class="ion-text-wrap" style="color: black; font-size: 16px;">
+          <strong>{{ item.id }}.</strong> {{ item.descripcion }}
+        </p>
+
+        @switch (item.tipo) {
+
+        @case ('cumple') {
+        <ion-row class="ion-margin-top">
+          <ion-col size="6">
+            <ion-checkbox labelPlacement="end" justify="start" [formControlName]="item.controlCumple">
+              Cumple
+            </ion-checkbox>
+          </ion-col>
+          <ion-col size="6">
+            <ion-checkbox labelPlacement="end" justify="start" [formControlName]="item.controlNoCumple" color="danger">
+              No Cumple
+            </ion-checkbox>
+          </ion-col>
+        </ion-row>
+        }
+
+        @case ('dropdown') {
+        <ion-item lines="none" class="ion-margin-top">
+          <ion-select [formControlName]="item.control" placeholder="Calificación (1-5)" interface="popover">
+            <ion-select-option value="1">1</ion-select-option>
+            <ion-select-option value="2">2</ion-select-option>
+            <ion-select-option value="3">3</ion-select-option>
+            <ion-select-option value="4">4</ion-select-option>
+            <ion-select-option value="5">5</ion-select-option>
+          </ion-select>
+        </ion-item>
+        }
+
+        @case ('si_no_na') {
+        <ion-row class="ion-margin-top">
+          <ion-col size="4">
+            <ion-checkbox labelPlacement="end" justify="start" [formControlName]="item.controlSi" color="success">
+              SI
+            </ion-checkbox>
+          </ion-col>
+          <ion-col size="4">
+            <ion-checkbox labelPlacement="end" justify="start" [formControlName]="item.controlNo" color="danger">
+              NO
+            </ion-checkbox>
+          </ion-col>
+          <ion-col size="4">
+            <ion-checkbox labelPlacement="end" justify="start" [formControlName]="item.controlNa" color="medium">
+              N/A
+            </ion-checkbox>
+          </ion-col>
+        </ion-row>
+        <ion-textarea [formControlName]="item.controlObs" placeholder="Observación del ítem..." [autoGrow]="true"
+          rows="2" class="ion-margin-top obs-textarea">
+        </ion-textarea>
+        }
+
+        }
+      </ion-card-content>
+    </ion-card>
+    }
+
+    <!-- Observaciones / Comentarios generales -->
+    <ion-card class="ion-margin-top">
+      <ion-card-header>
+        <ion-card-title style="font-size: 16px; color: black;">
+          {{ tipoRespuesta === 'si_no_na' ? 'Comentarios Generales' : 'Observaciones de Visita' }}
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        @if (tipoRespuesta !== 'scale_1_5' && tipoRespuesta !== 'si_no_na') {
+        <ion-textarea formControlName="observaciones"
+          placeholder="Escribe aquí las observaciones generales de la visita..." [autoGrow]="true" rows="4"
+         class="obs-textarea" >
+        </ion-textarea>
+        }
+        @if (tipoRespuesta === 'scale_1_5') {
+        <ion-textarea formControlName="observa_eva" placeholder="Observaciones de la evaluación..." [autoGrow]="true"
+          rows="4" class="obs-textarea">
+        </ion-textarea>
+        }
+        @if (tipoRespuesta === 'si_no_na') {
+        <ion-textarea formControlName="comentarios" placeholder="Comentarios generales de la verificación..."
+          [autoGrow]="true" rows="4" class="obs-textarea">
+        </ion-textarea>
+        }
+      </ion-card-content>
+    </ion-card>
+    }
+
+    @if (submitSuccess) {
+    <div class="feedback-msg success">
+      PDF generado y visita registrada correctamente.
+    </div>
+    }
+    @if (submitError) {
+    <div class="feedback-msg error">
+      {{ submitError }}
+    </div>
+    }
+
+    <ion-button expand="block" type="submit" [disabled]="!dinamicForm.valid || !formVisit.valid" class="ion-margin-top">
+      Generar PDF y Registrar Visita
+    </ion-button>
+
+  </form>
+
+</ion-content>

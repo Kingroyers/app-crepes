@@ -1,0 +1,175 @@
+/* Fondo general */
+ion-content {
+  --background: #f5f6f8;
+}
+
+/* Tarjeta principal */
+ion-card {
+  margin-top: 40px !important;
+  margin: 16px;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  background: #ffffff;
+}
+
+/* Espaciado interno */
+ion-card-content {
+  padding: 18px;
+}
+
+/* Estilo general de los items */
+ion-item {
+  --background: #f8f9fb;
+  --border-radius: 14px;
+  --padding-start: 14px;
+  --inner-padding-end: 14px;
+  margin-bottom: 14px;
+  border-radius: 14px;
+}
+
+/* Estilo para que el Text Area destaque === */
+/*  Text Area === */
+.textarea-item {
+  min-height: 120px;
+  align-items: stretch; /* Esto obliga a que el fondo gris cubra todo el espacio vertical */
+}
+
+/*  todo el ancho y alto disponible */
+.textarea-item app-text-area {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+::ng-deep app-text-area ion-textarea {
+  min-height: 90px !important;
+  margin-top: 5px;
+}
+
+/* Etiquetas flotantes y textos descriptivos */
+ion-label {
+  color: #7a7a7a !important;
+  font-weight: 500;
+}
+
+/* Botón datetime */
+ion-datetime-button::part(native) {
+  background: #f1f2f6;
+  border-radius: 12px;
+  padding: 8px 12px;
+  color: #2d3436;
+  font-weight: 500;
+}
+
+/* Radio Group (Texto a la izq, Opciones a la der) === */
+.radio-item {
+  --inner-padding-end: 10px;
+}
+
+.radio-label {
+  white-space: normal; /* Permite que el texto baje de línea si la pantalla es estrecha */
+  font-size: 14px;
+}
+
+
+/* 1. Arreglamos el color del texto "Marcar como importante:" para que resalte */
+ion-item.radio-item ion-label.radio-label {
+  color: #3b281f !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  opacity: 1 !important;
+}
+
+
+
+
+/*  Radio Buttons === */
+.radio-group-inline {
+  flex-direction: row; /* Fuerza a que estén uno al lado del otro horizontalmente */
+  gap: 20px; /* Espacio entre la opción Sí y No */
+  align-items: center;
+}
+
+/* Diseño del texto del radio button */
+ion-radio {
+  font-size: 16px !important; /* Letra más grande */
+  color: #3b281f !important;
+  --color: #3b281f;
+  font-weight: 600; /* Letra más gruesa */
+  width: auto !important;
+}
+
+ion-radio::part(label) {
+  margin-right: 5px !important; /* Bajar si se quiere  más pegado */
+  padding-right: 0 !important;
+  margin-left: 4px !important;
+  flex: none !important; /* Evita que el texto empuje el cuadrito hacia la derecha */
+}
+
+/* El cuadrito del radio */
+ion-radio::part(container) {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px; /* Borde un poco redondeado, no un círculo total */
+  border: 2px solid #ddd;
+  // margin-right: 15px !important;
+  margin-left: 0px !important;
+}
+
+ion-radio::part(mark) {
+  background: none;
+  transition: none;
+  transform: none;
+  border-radius: 0;
+}
+
+/* Cuando está seleccionado (Aplicamos tu color café) */
+ion-radio.radio-checked::part(container) {
+  background: #6b4f3a;
+  border-color: #6b4f3a;
+}
+
+/* La "palomita" de verificación (el chulito blanco) */
+ion-radio.radio-checked::part(mark) {
+  width: 5px;
+  height: 10px;
+  border-width: 0px 2px 2px 0px;
+  border-style: solid;
+  border-color: #fff;
+  transform: rotate(45deg);
+  margin-top: -2px; /* Centra la marca dentro del cuadrito */
+}
+
+/* Botón guardar */
+ion-button {
+  margin-top: 20px;
+  --background: #6b4f3a;
+  --border-radius: 14px;
+  height: 48px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  --box-shadow: 0 6px 16px rgba(107, 79, 58, 0.25);
+}
+
+/* Efecto al presionar el botón */
+ion-button:active {
+  transform: scale(0.98);
+}
+
+/* Ajuste para tablets o pantallas grandes */
+@media (min-width: 768px) {
+  ion-card {
+    margin: 24px auto;
+    max-width: 500px;
+  }
+
+}
+
+.optContainer{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+}

@@ -1,0 +1,308 @@
+// ─── Paleta de colores – harmonia con el resto de la app ───────────────────
+$bg-color:        #F8F6F6;
+$card-bg:         #FFFFFF;
+$input-bg:        #F2F0F0;
+$text-main:       #1A1A1A;
+$text-muted:      #888888;
+$primary-brown:   #4E3629;
+$accent-brown:    #5D4037;
+$border-radius:   16px;
+$error-color:     #C62828;
+$success-color:   #2E7D32;
+
+// ─── Content background ────────────────────────────────────────────────────
+ion-content.custom-content {
+  --background: #{$bg-color};
+}
+
+// ─── Toolbar ───────────────────────────────────────────────────────────────
+ion-toolbar.custom-toolbar {
+  --background: #{$bg-color};
+  ion-title {
+    font-weight: 700;
+    color: $primary-brown;
+    font-size: 1.05rem;
+  }
+  ion-back-button {
+    color: $primary-brown;
+  }
+}
+
+// ─── Hero card ─────────────────────────────────────────────────────────────
+.hero-card {
+  position: relative;
+  height: 150px;
+  border-radius: $border-radius;
+  overflow: hidden;
+  margin-bottom: 20px;
+  background: url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=600&auto=format&fit=crop') center/cover no-repeat;
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba($primary-brown, 0.88) 0%, rgba(0,0,0,0.15) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 18px 20px;
+
+    .hero-subtitle {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.65rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .hero-title {
+      color: #FFFFFF;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 4px 0 0 0;
+    }
+  }
+}
+
+// ─── Tarjeta info equipo ────────────────────────────────────────────────────
+.equipo-info-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: $card-bg;
+  border-radius: $border-radius;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+
+  .equipo-info-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: rgba($primary-brown, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    ion-icon {
+      font-size: 1.6rem;
+      color: $primary-brown;
+    }
+  }
+
+  .equipo-info-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+
+    .equipo-nombre {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: $text-main;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .equipo-codigo {
+      font-size: 0.75rem;
+      color: $text-muted;
+      font-family: monospace;
+    }
+  }
+
+  .equipo-estado-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background: #FBE9E7;
+    color: #D84315;
+    white-space: nowrap;
+
+    &.activo {
+      background: #E8F5E9;
+      color: $success-color;
+    }
+  }
+}
+
+// ─── Section header ─────────────────────────────────────────────────────────
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 0 2px;
+
+  .section-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: $primary-brown;
+    margin: 0;
+  }
+
+  ion-icon {
+    font-size: 1.4rem;
+    color: $text-muted;
+  }
+}
+
+// ─── Form container ─────────────────────────────────────────────────────────
+.form-container {
+  background: $card-bg;
+  border-radius: $border-radius;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+}
+
+// ─── Input group ────────────────────────────────────────────────────────────
+.input-group {
+  margin-bottom: 20px;
+
+  .custom-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: $text-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 8px;
+    padding-left: 2px;
+
+    ion-icon {
+      font-size: 0.95rem;
+      color: $accent-brown;
+    }
+  }
+
+  // Estilo para ion-input y ion-textarea del SharedModule
+  app-input {
+    display: block;
+
+    ion-input, ion-textarea {
+      --background: #{$input-bg};
+      --border-radius: 10px;
+      --padding-start: 14px;
+      --padding-end: 14px;
+      --padding-top: 12px;
+      --padding-bottom: 12px;
+      --color: #{$text-main};
+      --placeholder-color: #{$text-muted};
+      border-radius: 10px;
+      font-size: 0.93rem;
+    }
+  }
+
+  // Select nativo estilizado
+  .custom-select-wrapper {
+    position: relative;
+
+    &::after {
+      content: '▾';
+      position: absolute;
+      top: 50%;
+      right: 14px;
+      transform: translateY(-50%);
+      font-size: 0.75rem;
+      color: $text-muted;
+      pointer-events: none;
+    }
+
+    .native-select {
+      width: 100%;
+      background-color: $input-bg;
+      border: none;
+      border-radius: 10px;
+      padding: 14px 40px 14px 16px;
+      font-size: 0.93rem;
+      color: $text-main;
+      font-family: inherit;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+      transition: box-shadow 0.2s ease;
+
+      &:focus {
+        box-shadow: 0 0 0 2px rgba($primary-brown, 0.25);
+      }
+    }
+  }
+
+  // Date input nativo
+  .native-date {
+    width: 100%;
+    background-color: $input-bg;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 0.93rem;
+    color: $text-main;
+    font-family: inherit;
+    outline: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease;
+
+    &:focus {
+      box-shadow: 0 0 0 2px rgba($primary-brown, 0.25);
+    }
+  }
+
+  // Mensaje de error de campo
+  .field-error {
+    display: block;
+    font-size: 0.7rem;
+    color: $error-color;
+    margin-top: 5px;
+    padding-left: 4px;
+    font-weight: 600;
+  }
+}
+
+// ─── Feedback messages ───────────────────────────────────────────────────────
+.feedback-msg {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 14px;
+
+  ion-icon { font-size: 1.2rem; }
+
+  &.success {
+    background: #E8F5E9;
+    color: $success-color;
+  }
+
+  &.error {
+    background: #FFEBEE;
+    color: $error-color;
+  }
+}
+
+// ─── Submit button ───────────────────────────────────────────────────────────
+.btn-primary {
+  --background: #{$primary-brown};
+  --border-radius: 12px;
+  --box-shadow: 0 4px 16px rgba(78, 54, 41, 0.35);
+  margin-top: 6px;
+  height: 54px;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+  transition: opacity 0.2s ease;
+
+  &[disabled] {
+    opacity: 0.55;
+  }
+}

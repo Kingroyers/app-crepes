@@ -1,0 +1,151 @@
+$primary:    #6B4E3D;
+$primary-lt: rgba(107, 78, 61, .08);
+$bg:         #FDFBF7;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ION-HEADER
+// ─────────────────────────────────────────────────────────────────────────────
+.app-header {
+  --background: transparent;
+  background: $bg;
+  padding: calc(12px + var(--ion-safe-area-top, 0px)) 16px 0;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// FILA: logo + texto + badge
+// ─────────────────────────────────────────────────────────────────────────────
+.header-title-wrap {
+  padding: 0 0 14px;
+  width: 100%;
+}
+
+.header-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+// Logo
+.header-logo {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #fff;
+  padding: 4px;
+  box-shadow: 0 2px 10px rgba($primary, .15);
+  border: 1.5px solid $primary-lt;
+  flex-shrink: 0;
+}
+
+// Texto
+.header-text-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.header-main-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: $primary;
+  line-height: 1.2;
+}
+
+.header-sub-title {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: rgba($primary, .5);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+// Badge escudo
+.header-shield {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, $primary 0%, #9e7060 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba($primary, .28);
+  flex-shrink: 0;
+
+  ion-icon {
+    font-size: 1.15rem;
+    color: #fff;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CAJA DEL BUSCADOR (fuera del ion-header, en el div.header-content)
+// ─────────────────────────────────────────────────────────────────────────────
+.header-content {
+  background: $bg;
+  border-radius: 16px;
+  padding: 8px 10px;
+  margin: 10px 16px 12px;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,.05), 0 2px 4px -1px rgba(0,0,0,.03);
+  border: 1px solid $primary-lt;
+}
+
+.search-flex-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+// Ion-searchbar con aspecto limpio
+.custom-ionic-search {
+  padding: 0;
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+
+  --background: rgba(107,78,61,.05);
+  --border-radius: 20px;
+  --color: #334155;
+  --placeholder-color: rgba(107,78,61,.4);
+  --icon-color: rgba(107,78,61,.55);
+  --clear-button-color: rgba(107,78,61,.55);
+  --box-shadow: none;
+
+  border: 1.5px solid rgba($primary, .18);
+  border-radius: 22px;
+  height: 40px;
+  transition: border-color .2s, box-shadow .2s;
+
+  &.searchbar-has-focus {
+    border-color: rgba($primary, .45);
+    box-shadow: 0 0 0 3px rgba($primary, .07);
+  }
+
+  &::part(native) {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+}
+
+// Botón buscar
+.search-action-btn {
+  margin: 0;
+  height: 40px;
+  width: 44px;
+  flex-shrink: 0;
+
+  --background:           #{$primary};
+  --background-hover:     #5a4133;
+  --background-activated: #4a352a;
+  --border-radius: 14px;
+  --box-shadow: 0 4px 8px rgba(107,78,61,.28);
+
+  ion-icon {
+    font-size: 1.15rem;
+    color: #fff;
+  }
+}

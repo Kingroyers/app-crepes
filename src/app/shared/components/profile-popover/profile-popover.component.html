@@ -1,0 +1,36 @@
+<div class="profile-pop">
+
+  <!-- Info del usuario -->
+  <div class="pop-user">
+    @if (!photoURL) {
+      <div class="pop-avatar">{{ initials }}</div>
+    }
+    @if (photoURL) {
+      <img class="pop-avatar pop-avatar--photo" [src]="photoURL" alt="Foto de perfil" />
+    }
+    <div class="pop-info">
+      <span class="pop-name">{{ userName }}</span>
+      <span class="pop-dept">{{ department || 'Sin departamento' }}</span>
+    </div>
+  </div>
+
+  <div class="pop-divider"></div>
+
+  <!-- Ver perfil -->
+  <button class="pop-item" (click)="viewProfile()">
+    <div class="pop-icon-wrap">
+      <ion-icon name="person-outline"></ion-icon>
+    </div>
+    <span>Ver perfil</span>
+    <ion-icon name="chevron-forward-outline" class="pop-arrow"></ion-icon>
+  </button>
+
+  <!-- Cerrar sesión -->
+  <button class="pop-item pop-item--danger" (click)="signOut()">
+    <div class="pop-icon-wrap pop-icon-wrap--danger">
+      <ion-icon name="log-out-outline"></ion-icon>
+    </div>
+    <span>Cerrar sesión</span>
+  </button>
+
+</div>

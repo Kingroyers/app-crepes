@@ -1,0 +1,25 @@
+<ion-input
+  [type]="type"
+  [label]="label"
+  [value]="control.value || ''"
+  labelPlacement="floating"
+  [readonly]="isReadonly"
+  (ionInput)="onType($event)">
+  @if (type === 'password') {
+    <ion-input-password-toggle
+      slot="end">
+    </ion-input-password-toggle>
+  }
+
+</ion-input>
+
+@if (type === 'textArea') {
+  <ion-textarea
+    [label]="label"
+    [value]="control.value || ''"
+    labelPlacement="floating"
+    [readonly]="isReadonly"
+    (ionInput)="onType($event)"
+    autoGrow="true">
+  </ion-textarea>
+}

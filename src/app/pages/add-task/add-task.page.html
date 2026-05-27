@@ -1,0 +1,56 @@
+<app-header>
+
+</app-header>
+
+<app-side-menu>
+
+</app-side-menu>
+
+<ion-content [fullscreen]="true">
+ <form [formGroup]="FormTask" (ngSubmit)="addTask()">
+  <ion-card>
+    <ion-card-content>
+
+      <ion-item>
+        <app-input type="text" label="Title" [control]="title"></app-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Fecha límite</ion-label>
+        <ion-datetime-button datetime="limitDate"></ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime
+            [min]="minDate"
+            id="limitDate"
+            formControlName="limitDate"></ion-datetime>
+          </ng-template>
+        </ion-modal>
+      </ion-item>
+
+      <ion-item class="textarea-item">
+        <app-text-area label="Description" type="textArea" [control]="description"></app-text-area>
+      </ion-item>
+
+      <ion-item>
+        <app-input type="text" label="Link" [control]="link"></app-input>
+      </ion-item>
+
+      <ion-item class="radio-item">
+        <ion-label class="radio-label">Marcar como importante:</ion-label>
+        <ion-radio-group formControlName="important" value="no" class="radio-group-inline" slot="end">
+          <div class="optContainer">
+            <ion-radio value="yes">Sí</ion-radio>
+            <ion-radio value="no">No</ion-radio>
+          </div>
+        </ion-radio-group>
+      </ion-item>
+
+      <ion-button expand="block" type="submit">Guardar</ion-button>
+
+    </ion-card-content>
+  </ion-card>
+</form>
+</ion-content>
+
+

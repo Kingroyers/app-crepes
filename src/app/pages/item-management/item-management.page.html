@@ -1,0 +1,191 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="custom-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/sacanner-page" icon="arrow-back-outline" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registro de Operaciones</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="custom-content ion-padding">
+
+  <!-- Hero Banner -->
+  <div class="hero-card">
+    <div class="hero-overlay">
+      <span class="hero-subtitle">OPERACIONES ESPECIALES</span>
+      <h2 class="hero-title">Gestión Técnica</h2>
+    </div>
+  </div>
+
+  <!-- Info del equipo -->
+  @if (data.equipo) {
+    <div class="equipo-info-card">
+      <div class="equipo-info-icon">
+        <ion-icon name="hardware-chip-outline"></ion-icon>
+      </div>
+      <div class="equipo-info-content">
+        <span class="equipo-nombre">{{ data.equipo.nombre_equipo }}</span>
+        <span class="equipo-codigo">{{ data.equipo.codigo_barras }}</span>
+      </div>
+      <div class="equipo-estado-badge" [class.activo]="data.equipo.estado === 'Activo'">
+        {{ data.equipo.estado }}
+      </div>
+    </div>
+  }
+
+  <!-- Formulario -->
+  <div class="form-section">
+    <div class="section-header">
+      <h3 class="section-title">Registrar Nueva Visita</h3>
+      <ion-icon name="calendar-outline"></ion-icon>
+    </div>
+
+    <form class="form-container" [formGroup]="formHistorial" (ngSubmit)="onSubmit()">
+
+      <!-- Área que Realiza -->
+      <div class="input-group">
+        <ion-label class="custom-label">
+          <ion-icon name="business-outline"></ion-icon>
+          Área que Realiza
+        </ion-label>
+        <app-input
+          label="Área responsable"
+          [control]="areaRealiza">
+        </app-input>
+        @if (areaRealiza.invalid && areaRealiza.touched) {
+          <span class="field-error">
+            Este campo es requerido
+          </span>
+        }
+      </div>
+
+      <!-- Responsable -->
+      <div class="input-group">
+        <ion-label class="custom-label">
+          <ion-icon name="person-outline"></ion-icon>
+          Técnico Responsable
+        </ion-label>
+        <app-input
+          [control]="tecnicoName"
+          [isReadonly]="userNameResponsible ? true : false">
+        </app-input>
+      </div>
+
+      <!-- Tipo de Visita -->
+      <div class="input-group">
+        <ion-label class="custom-label">
+          <ion-icon name="construct-outline"></ion-icon>
+          Tipo de Visita
+        </ion-label>
+        <div class="custom-select-wrapper">
+          <select class="native-select" [formControl]="visitType">
+            <option value="" disabled selected>Seleccionar tipo...</option>
+            <option value="Preventivo">Preventivo</option>
+            <option value="Correctivo">Correctivo</option>
+            <option value="Predictivo">Predictivo</option>
+            <option value="Instalación">Instalación</option>
+            <option value="Inspección">Inspección</option>
+          </select>
+        </div>
+        @if (visitType.invalid && visitType.touched) {
+          <span class="field-error">
+            Selecciona el tipo de visita
+          </span>
+        }
+      </div>
+
+      <!-- Fecha de Visita -->
+      <div class="input-group">
+        <ion-label class="custom-label">
+          <ion-icon name="calendar-number-outline"></ion-icon>
+          Fecha de Visita
+        </ion-label>
+        <app-input [control]="visitDate" [isReadonly]="true">
+        </app-input>
+      </div>
+
+      <!-- Próximo Mantenimiento -->
+      <div class="input-group">
+        <ion-label class="custom-label">
+          <ion-icon name="alarm-outline"></ion-icon>
+          Próximo Mantenimiento
+        </ion-label>
+        <input
+          class="native-date"
+          type="date"
+          [formControl]="nextMaintainance"
+          [min]="todayDate" />
+        @if (nextMaintainance.invalid && nextMaintainance.touched) {
+          <span class="field-error">
+            Selecciona la fecha del próximo mantenimiento
+          </span>
+        }
+      </div>
+
+      <!-- Observaciones -->
+      <div class="input-group">
+        <ion-label class="custom-label">
+          <ion-icon name="document-text-outline"></ion-icon>
+          Observaciones
+        </ion-label>
+        <app-input
+          type="textArea"
+          label="Describe el trabajo realizado..."
+          [control]="observaciones">
+        </app-input>
+        @if (observaciones.invalid && observaciones.touched) {
+          <span class="field-error">
+            Las observaciones son requeridas
+          </span>
+        }
+      </div>
+
+      <!-- Feedback -->
+      @if (submitSuccess) {
+        <div class="feedback-msg success">
+          <ion-icon name="checkmark-circle-outline"></ion-icon>
+          Visita registrada correctamente
+        </div>
+      }
+      @if (submitError) {
+        <div class="feedback-msg error">
+          <ion-icon name="alert-circle-outline"></ion-icon>
+          {{ submitError }}
+        </div>
+      }
+
+      <!-- Botón Submit -->
+      <ion-button
+        expand="block"
+        class="btn-primary"
+        mode="md"
+        type="submit"
+        [disabled]="formHistorial.invalid || isSubmitting">
+        @if (isSubmitting) {
+          <ion-spinner name="crescent" slot="start"></ion-spinner>
+        }
+        @if (!isSubmitting) {
+          <ion-icon name="save-outline" slot="start"></ion-icon>
+        }
+        {{ isSubmitting ? 'Guardando...' : 'Registrar Visita' }}
+      </ion-button>
+
+    </form>
+  </div>
+
+  <!-- TEMPORAL: Botón de diagnóstico PDF (eliminar después de verificar) -->
+  <!-- <div style="margin-top: 16px;">
+    <ion-button
+      expand="block"
+      color="warning"
+      mode="md"
+      (click)="debugPdfFields()">
+      <ion-icon name="bug-outline" slot="start"></ion-icon>
+      🔍 Debug: Detectar campos PDF
+    </ion-button>
+    <p style="text-align: center; font-size: 0.75rem; color: #888; margin-top: 6px;">
+      Abre la consola del navegador (F12) para ver los resultados
+    </p>
+  </div> -->
+
+</ion-content>

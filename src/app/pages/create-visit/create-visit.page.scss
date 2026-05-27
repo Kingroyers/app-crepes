@@ -1,0 +1,250 @@
+/* Variables de color de la marca */
+:host {
+  --bg-color: #FAFAFA;
+  --text-dark: #3B231D;
+  --text-gray: #7A7A7A;
+  --accent-pink: #FCECE4;
+  --accent-brown: #4A2C26;
+  --danger-red: #D9534F; /* Rojo suave para el "No Cumple" */
+}
+
+/* Fondo general y tipografía */
+ion-content {
+  --background: var(--bg-color);
+  font-family: 'Inter', sans-serif;
+}
+
+/* Header y Toolbar */
+.visit-header {
+  --background: transparent;
+  box-shadow: none;
+}
+
+.visit-toolbar {
+  --background: linear-gradient(135deg, #4A2C26 0%, #7B3F35 100%);
+  --color: #fff;
+  --border-width: 0;
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+  --min-height: 68px;
+  box-shadow: 0 4px 20px rgba(74, 44, 38, 0.35);
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  cursor: pointer;
+  margin-left: 8px;
+  transition: background 0.2s ease;
+
+  ion-icon {
+    font-size: 1.2rem;
+  }
+
+  &:active {
+    background: rgba(255, 255, 255, 0.28);
+  }
+}
+
+.header-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+
+  .header-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.3px;
+  }
+
+  .header-sub {
+    font-size: 0.72rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.72);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+}
+
+.logo-wrap {
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+
+  .brand-logo {
+    height: 36px;
+    width: auto;
+    object-fit: contain;
+  }
+}
+
+/* Títulos de las secciones */
+ion-list-header {
+  padding-left: 0;
+  margin-bottom: 10px;
+
+  ion-label {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 0;
+  }
+}
+
+/* --- ESTILOS DE LAS TARJETAS GLOBALES --- */
+ion-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  margin: 0 0 16px 0;
+
+  ion-card-content {
+    padding: 20px;
+
+    p {
+      color: var(--text-dark) !important;
+      font-weight: 500;
+      line-height: 1.4;
+      margin-bottom: 15px;
+    }
+  }
+}
+
+
+/* =======================================================
+   ESTILOS NUEVOS: FORMULARIO "DATOS DE LA VISITA"
+   ======================================================= */
+
+form.formVisit {
+
+  ion-item {
+    --background: #F8F9FA; /* Gris súper claro para la cápsula */
+    --border-radius: 14px;
+    --padding-start: 16px;
+    --inner-padding-end: 16px;
+    --min-height: 60px;
+
+    /* Apagamos las líneas por defecto de Ionic */
+    --border-width: 0 !important;
+    --inner-border-width: 0 !important;
+
+    margin-bottom: 14px; /* Separación entre cada bloque */
+    border-radius: 14px;
+  }
+
+  /* Quitamos el margen al último para que no sobre espacio en la tarjeta */
+  ion-item:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Aseguramos que el componente personalizado ocupe todo el ancho */
+  app-input {
+    width: 100%;
+  }
+}
+
+/* Forzamos colores y tipografía dentro de app-input usando ng-deep */
+:host ::ng-deep form.formVisit app-input {
+  ion-label {
+    color: var(--text-gray) !important;
+    font-size: 0.85rem !important;
+    font-weight: 500 !important;
+  }
+
+  ion-input, input {
+    --color: var(--text-dark) !important;
+    color: var(--text-dark) !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+  }
+}
+/* ======================================================= */
+
+
+/* Personalización de los Checkboxes */
+ion-checkbox {
+  --size: 22px;
+  --checkbox-background-checked: var(--accent-brown);
+  --border-color-checked: var(--accent-brown);
+  --border-radius: 6px;
+
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-gray);
+
+  /* Si el checkbox tiene el color danger, usa el rojo en lugar del café */
+  &[color="danger"] {
+    --checkbox-background-checked: var(--danger-red);
+    --border-color-checked: var(--danger-red);
+  }
+}
+
+/* Botón principal (Generar PDF) */
+ion-button[type="submit"] {
+  --background: var(--accent-brown);
+  --background-activated: #341e1a;
+  --border-radius: 14px;
+  --box-shadow: none;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 30px;
+  margin-bottom: 20px;
+
+  /* Da más altura al botón para que se vea premium */
+  &::part(native) {
+    padding: 20px 0;
+  }
+}
+
+/* Spinner de carga */
+ion-spinner {
+  color: var(--accent-brown);
+  transform: scale(1.5);
+  margin-bottom: 15px;
+}
+
+/* Texto de "Cargando formato..." */
+.ion-text-center p {
+  color: var(--text-gray);
+  font-weight: 500;
+  margin-top: 15px;
+}
+
+.feedback-msg {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 14px;
+
+  ion-icon { font-size: 1.2rem; }
+
+  &.success {
+    background: #E8F5E9;
+    color: #2E7D32;
+  }
+
+  &.error {
+    background: #FFEBEE;
+    color: #C62828;
+  }
+}
+
+ion-textarea.obs-textarea {
+  --background: #f9f9f9;
+  --border-radius: 8px;
+  --padding-start: 10px;
+  --padding-top: 8px;
+}

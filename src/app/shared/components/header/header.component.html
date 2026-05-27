@@ -1,0 +1,136 @@
+<ion-header class="app-header">
+
+  <!-- ─── Modo normal ──────────────────────────────────────────────────── -->
+  @if (!isSearchOpen) {
+    <div class="header-content">
+      <!-- Izquierda: avatar (abre popover) + saludo -->
+      <div class="start-section">
+        <button class="avatar-btn" (click)="openAvatarMenu($event)" aria-label="Opciones de perfil">
+          @if (!user?.photoURL) {
+            <div class="avatar-circle">{{ initials }}</div>
+          }
+          @if (user?.photoURL) {
+            <img class="avatar-photo" [src]="user?.photoURL" alt="Foto de perfil" />
+          }
+        </button>
+        <div class="user-greeting">
+          <span class="welcome-label">Bienvenido</span>
+          <span class="user-name">{{ user?.name || '' }}</span>
+        </div>
+      </div>
+      <!-- Derecha: búsqueda + notificaciones + hamburguesa -->
+      <div class="end-section">
+        <button class="icon-btn" (click)="toggleSearch()" aria-label="Buscar eventos">
+          <ion-icon name="search-outline"></ion-icon>
+        </button>
+        <button class="icon-btn notif-btn" (click)="openNotifications()" aria-label="Notificaciones">
+          <ion-icon name="notifications-outline"></ion-icon>
+          @if (unreadCount > 0) {
+            <span class="notif-badge">{{ unreadCount > 9 ? '9+' : unreadCount }}</span>
+          }
+        </button>
+        <div class="separator"></div>
+        <button class="icon-btn hamburger-btn" (click)="openMenu()" aria-label="Menú de navegación">
+          <ion-icon name="menu-outline"></ion-icon>
+        </button>
+      </div>
+    </div>
+  }
+
+  <!-- ─── Modo búsqueda ────────────────────────────────────────────────── -->
+  @if (isSearchOpen) {
+    <div class="header-content header-content--search">
+      <button class="icon-btn" (click)="toggleSearch()" aria-label="Cerrar búsqueda">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </button>
+      <input
+        class="search-input"
+        type="search"
+        [(ngModel)]="searchQuery"
+        (input)="onSearch(searchQuery)"
+        placeholder="Título, área, responsable..."
+        autofocus
+        />
+        @if (searchQuery) {
+          <button class="icon-btn" (click)="searchQuery = ''; onSearch('')">
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+        }
+      </div>
+    }
+
+    <!-- ─── Fila de filtros ──────────────────────────────────────────────── -->
+    @if (isSearchOpen) {
+      <div class="filter-row">
+        <div class="filter-item">
+          <ion-icon name="calendar-outline" class="filter-icon"></ion-icon>
+          <input
+            class="filter-input"
+            type="date"
+            [(ngModel)]="filterDate"
+            (ngModelChange)="onFilterDate($event)"
+            aria-label="Filtrar por fecha"
+            />
+            @if (filterDate) {
+              <button class="filter-clear-x" (click)="filterDate = ''; onFilterDate('')" aria-label="Limpiar fecha">
+                <ion-icon name="close-circle"></ion-icon>
+              </button>
+            }
+          </div>
+          <div class="filter-divider"></div>
+          <div class="filter-item">
+            <ion-icon name="location-outline" class="filter-icon"></ion-icon>
+            <input
+              class="filter-input"
+              type="search"
+              list="pdv-list"
+              [(ngModel)]="filterPdv"
+              (ngModelChange)="onFilterPdv($event)"
+              placeholder="Punto de venta"
+              aria-label="Filtrar por PDV"
+              />
+              <datalist id="pdv-list">
+                @for (pdv of uniquePdvs; track pdv) {
+                  <option [value]="pdv"></option>
+                }
+              </datalist>
+              @if (filterPdv) {
+                <button class="filter-clear-x" (click)="filterPdv = ''; onFilterPdv('')" aria-label="Limpiar PDV">
+                  <ion-icon name="close-circle"></ion-icon>
+                </button>
+              }
+            </div>
+          </div>
+        }
+
+        <!-- ─── Resultados ───────────────────────────────────────────────────── -->
+        @if (isSearchOpen && searchResults.length > 0) {
+          <div class="search-dropdown">
+            @for (event of searchResults; track event) {
+              <button class="search-result-item" (click)="selectEvent(event)">
+                <div class="result-icon-wrap">
+                  <ion-icon name="calendar-outline"></ion-icon>
+                </div>
+                <div class="result-info">
+                  <span class="result-title">{{ event.title }}</span>
+                  <span class="result-meta">
+                    {{ event.start | date:'dd MMM yyyy' }}
+                    @if (event.pdv) {
+                      <span class="result-pdv"> · {{ event.pdv }}</span>
+                    }
+                  </span>
+                </div>
+                <ion-icon name="chevron-forward-outline" class="result-arrow"></ion-icon>
+              </button>
+            }
+          </div>
+        }
+
+        @if (isSearchOpen && (searchQuery || hasActiveFilters) && searchResults.length === 0) {
+          <div class="search-empty">
+            <ion-icon name="search-outline"></ion-icon>
+            <span>Sin resultados para los filtros aplicados</span>
+          </div>
+        }
+
+      </ion-header>

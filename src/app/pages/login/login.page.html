@@ -1,0 +1,91 @@
+<ion-content class="ion-padding">
+
+  <!-- HEADER LOGO -->
+  <div class="d-header">
+    <img src="../../../assets/imgPrueba/crepesLogo.png" alt="crepes-logo" class="img-header">
+  </div>
+
+  <!-- TITLE -->
+  <div class="container-title">
+    <h1 class="main-title">
+      <span class="brand">Gestión Integral x CREPES & WAFFLES</span>
+      <span class="subtitle">Inicio de sesión</span>
+    </h1>
+  </div>
+
+  <!-- FORM -->
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+    <ion-card>
+      <ion-card-content>
+
+        <!-- EMAIL -->
+        <ion-item lines="none">
+          <app-input type="email" label="Email" [control]="email">
+          </app-input>
+        </ion-item>
+
+        <!-- PASSWORD -->
+        <ion-item lines="none" class="ion-margin-top">
+          <app-input type="password" label="Password" [control]="password">
+          </app-input>
+        </ion-item>
+
+        <!-- BUTTON -->
+        <div class="button-container ion-margin-top">
+          <ion-button expand="block" type="submit" [disabled]="loginForm.invalid">
+            Login
+          </ion-button>
+        </div>
+
+      </ion-card-content>
+    </ion-card>
+    <!-- ERROR -->
+    <!-- <ion-text color="danger" *ngIf="errorMessage">
+      <p class="ion-text-center ion-margin-top">
+        {{ errorMessage }}
+      </p>
+    </ion-text> -->
+
+    <!-- DIVIDER -->
+    <div class="ion-text-center ion-margin-top divider-text">
+      <span class="line"></span>
+      <span class="divider-label">O continuar con</span>
+      <span class="line"></span>
+    </div>
+
+    <!-- GOOGLE -->
+    <div class="social-button-container ion-margin-top">
+      <ion-button
+        expand="block"
+        fill="outline"
+        class="social-button google"
+        (click)="loginWithGoogle()"
+      >
+        <ion-icon slot="start" name="logo-google"></ion-icon>
+        Continuar con Google
+      </ion-button>
+    </div>
+
+    <!-- MICROSOFT -->
+    <div class="social-button-container ion-margin-top">
+      <ion-button
+        expand="block"
+        fill="outline"
+        class="social-button microsoft"
+        (click)="loginWithMicrosoft()"
+      >
+        <ion-icon slot="start" name="logo-windows"></ion-icon>
+        Continuar con Microsoft
+      </ion-button>
+    </div>
+
+    <!-- LINK REGISTRO -->
+    <div class="register-text ion-text-center ion-margin-top">
+      <span>¿No tienes cuenta?</span>
+      <a (click)="goToRegister()"> Regístrate</a>
+    </div>
+
+  </form>
+
+</ion-content>

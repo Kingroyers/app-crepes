@@ -1,0 +1,59 @@
+<ion-content >
+
+
+  <div class="d-header">
+    <img src="../../../assets/imgPrueba/crepesLogo.png" alt="profile-img" class="img-header">
+  </div>
+
+  <div class="container-title">
+    <h1 class="main-title">
+      <span class="brand">Gestión Integral x CREPES & WAFFLES</span>
+      <span class="subtitle">Registro de usuarios</span>
+    </h1>
+  </div>
+
+  <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
+
+    <ion-card>
+
+      <ion-card-content>
+
+        <ion-item>
+          <app-input type="text" label="Name"
+          [control]="name">
+          </app-input>
+        </ion-item>
+        <ion-item>
+          <app-input type="text" label="Last name"
+          [control]="lastName">
+          </app-input>
+        </ion-item>
+        <ion-item>
+          <app-select label="Departamento" id="dep"
+          [control]="department"></app-select>
+
+        </ion-item>
+
+        <ion-item>
+          <app-input type="text" label="Email"
+          [control]="email">
+          </app-input>
+        </ion-item>
+
+        <ion-item>
+          <app-input type="password" label="Password"
+          [control]="password">
+          </app-input>
+        </ion-item>
+
+
+
+        <div class="button-container">
+          <ion-button type="submit" [disabled]="registerForm.invalid">Registrar</ion-button>
+        </div>
+      </ion-card-content>
+
+    </ion-card>
+  </form>
+
+</ion-content>

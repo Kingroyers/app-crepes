@@ -1,0 +1,116 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="custom-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/sacanner-page" icon="arrow-back-outline" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalles del Equipo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="custom-content ion-padding">
+
+  <!-- Loading skeleton -->
+  @if (isLoading) {
+    <ion-skeleton-text animated class="skeleton-hero"></ion-skeleton-text>
+    <ion-skeleton-text animated class="skeleton-card"></ion-skeleton-text>
+    <ion-skeleton-text animated class="skeleton-card short"></ion-skeleton-text>
+  }
+
+  @if (!isLoading) {
+    <!-- ── Hero del equipo ─────────────────────────────────────────── -->
+    @if (equipo) {
+      <div class="hero-card">
+        <div class="hero-overlay">
+          <div class="hero-badge" [class.activo]="equipo.estado === 'Activo'">
+            <ion-icon name="radio-button-on-outline"></ion-icon>
+            {{ equipo.estado ?? 'Sin estado' }}
+          </div>
+          <h2 class="hero-title">{{ equipo.nombre_equipo }}</h2>
+          <p class="hero-code">{{ equipo.codigo_barras }}</p>
+        </div>
+      </div>
+    }
+    <!-- ── Ficha técnica ────────────────────────────────────────────── -->
+    @if (equipo) {
+      <div class="detail-card">
+        <div class="card-section-title">
+          <ion-icon name="information-circle-outline"></ion-icon>
+          Información del Equipo
+        </div>
+        <div class="detail-grid">
+          <div class="detail-item">
+            <span class="detail-label">Tipo</span>
+            <span class="detail-value">{{ equipo.tipo_equipo ?? '—' }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Área encargada</span>
+            <span class="detail-value">{{ equipo.area_encargada ?? '—' }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Ubicación</span>
+            <span class="detail-value">{{ equipo.ubicacion_equipo ?? '—' }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Fecha de registro</span>
+            <span class="detail-value">{{ equipo.fecha_creacion | date:'dd MMM yyyy' }}</span>
+          </div>
+        </div>
+      </div>
+    }
+    <!-- ── Historial de visitas ─────────────────────────────────────── -->
+    <div class="history-section">
+      <div class="section-header">
+        <span class="section-title">Historial de Visitas</span>
+        <span class="history-count">{{ historial.length }} registros</span>
+      </div>
+      <!-- Sin historial -->
+      @if (historial.length === 0) {
+        <div class="empty-state">
+          <ion-icon name="calendar-clear-outline"></ion-icon>
+          <p>No hay visitas registradas para este equipo.</p>
+        </div>
+      }
+      <!-- Lista de visitas -->
+      @for (visita of historial; track visita; let i = $index) {
+        <div
+          class="visit-card"
+          [class]="getTipoClass(visita.tipo_visita)">
+          <div class="visit-header">
+            <div class="visit-type-icon" [class]="getTipoClass(visita.tipo_visita)">
+              <ion-icon [name]="getTipoIcon(visita.tipo_visita)"></ion-icon>
+            </div>
+            <div class="visit-meta">
+              <span class="visit-type">{{ visita.tipo_visita ?? 'Mantenimiento' }}</span>
+              <span class="visit-date">{{ visita.fecha_visita | date:'dd MMM yyyy' }}</span>
+            </div>
+            <span class="visit-index">#{{ historial.length - i }}</span>
+          </div>
+          <div class="visit-body">
+            <div class="visit-row">
+              <ion-icon name="person-outline"></ion-icon>
+              <span>{{ visita.tecnico_nombre ?? '—' }}</span>
+            </div>
+            <div class="visit-row">
+              <ion-icon name="business-outline"></ion-icon>
+              <span>{{ visita.area_realiza ?? '—' }}</span>
+            </div>
+            @if (visita.observaciones) {
+              <div class="visit-obs">
+                <ion-icon name="document-text-outline"></ion-icon>
+                <p>{{ visita.observaciones }}</p>
+              </div>
+            }
+          </div>
+          @if (visita.proximo_mantenimiento) {
+            <div class="visit-footer">
+              <ion-icon name="alarm-outline"></ion-icon>
+              Próximo mantenimiento:
+              <strong>{{ visita.proximo_mantenimiento | date:'dd MMM yyyy' }}</strong>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  }
+
+</ion-content>

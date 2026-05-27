@@ -1,0 +1,78 @@
+// --- TU CSS DEL EFECTO ANIMADO (Ligeramente ajustado para Ionic) ---
+
+.carta {
+  width: 90%;
+  margin: 20px auto; // Para centrar la tarjeta
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden; // MUY IMPORTANTE: evita que el gradiente giratorio se salga de las esquinas
+
+  // Sobrescribimos el fondo y la sombra por defecto de Ionic
+  --background: transparent;
+  background: transparent;
+  box-shadow: none;
+}
+
+.carta::before,
+.carta::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+}
+
+.carta::before {
+  // Lo hacemos más grande que la tarjeta para que al rotar no queden huecos en las esquinas
+  inset: -50%;
+  background-image: linear-gradient(180deg, #bda0b7, rgb(37, 49, 49));
+  animation: animate 10s linear infinite;
+}
+
+.carta::after {
+  inset: 5px; // Grosor del borde animado
+  background: #141414; // Tu fondo oscuro
+  border-radius: 10px; // Un poco menos que el borde exterior para que encaje perfecto
+}
+
+@keyframes animate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// --- NUEVOS ESTILOS PARA EL ICONO Y LOS TEXTOS ---
+
+.icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-top: 30px; // Espacio superior
+
+  ion-icon {
+    font-size: 70px; // Tamaño del icono
+    color: #bda0b7;  // Usamos el mismo tono de tu gradiente para que combine
+
+    // Le agregamos un poco del efecto de sombra que tenías en la imagen original
+    filter: drop-shadow(0 0 10px rgba(189, 160, 183, 0.4));
+  }
+}
+
+ion-card-header {
+  text-align: center;
+  padding-bottom: 30px;
+
+  ion-card-title {
+    color: #ffffff; // Texto blanco para que resalte en tu fondo #141414
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+
+  ion-card-subtitle {
+    color: #a0a0a0; // Texto gris claro para la descripción
+    font-size: 0.95rem;
+  }
+}

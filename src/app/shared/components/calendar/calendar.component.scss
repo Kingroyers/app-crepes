@@ -1,0 +1,105 @@
+:host {
+  display: block;
+  height: 90%;
+
+}
+
+full-calendar {
+  width: 100%;
+  justify-self: center;
+  // margin-right: 20px;
+}
+
+.fc {
+  height: 470px;
+  border-radius: 12px;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 5px;
+}
+
+
+/* Estilo para el enlace "+N más" de FullCalendar */
+::ng-deep .fc-more-link,
+::ng-deep .fc-more-link-custom {
+  background-color: #6b4a3a;
+  color: #ffffff !important;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-size: 11px;
+  text-decoration: none;
+}
+
+::ng-deep .fc-daygrid-event,
+::ng-deep .fc-event {
+  background-color: #6b4a3a !important; /* Cambia esto por el color que prefieras */
+  border-color: #6b4a3a !important; /* Generalmente se pone igual al fondo */
+  border-radius: 6px !important; /* Para que se vean más redondeados */
+  padding: 2px 4px; /* Espaciado interno para que el texto respire */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Opcional: una pequeña sombra */
+}
+
+::ng-deep .fc-event-main {
+ /* Color de la letra */
+  font-size: 11px !important; /* Tamaño de la letra */
+  font-weight: 500;
+  text-align: center; /* Para centrar el texto "Evento" */
+}
+
+
+/* Forzamos el color blanco en todos los niveles del texto del evento */
+::ng-deep .fc-event,
+::ng-deep .fc-daygrid-event,
+::ng-deep .fc-event-main,
+::ng-deep .fc-event-title,
+::ng-deep .fc-daygrid-event-dot {
+  color: #ffffff !important;
+}
+
+/* Opcional: Si los eventos de un día te muestran un puntito de otro color,
+   esto lo oculta o lo vuelve del mismo color para que se vea limpio */
+::ng-deep .fc-daygrid-event-dot {
+  display: none; /* Oculta el punto si prefieres que se vea solo como un bloque */
+}
+
+/* 1. Cambiar el color de los días de la semana (lun, mar, mié...) */
+::ng-deep .fc-col-header-cell-cushion {
+  color: #6b4a3a !important; /* Tu color marrón principal */
+  text-transform: capitalize; /* Opcional: para que la primera letra sea mayúscula */
+}
+
+/* 2. Cambiar el color de los números de los días (1, 2, 3...) */
+::ng-deep .fc-daygrid-day-number {
+  color: #3b281f !important; /* Un marrón más oscuro, casi negro, para que se lea bien */
+  font-weight: 500;
+}
+
+/* 3. Cambiar el fondo del día actual (El recuadro amarillo/azul por defecto) */
+::ng-deep .fc-day-today {
+  background-color: rgba(107, 74, 58, 0.1) !important; /* Un tono crema/café con leche muy suave */
+}
+
+/* 4. Cambiar el color del botón "Hoy" y las flechas */
+::ng-deep .fc-button-primary {
+  background-color: #6b4a3a !important;
+  border-color: #6b4a3a !important;
+}
+
+/* 5. Efecto al hacer clic en los botones del calendario */
+::ng-deep .fc-button-primary:not(:disabled):active,
+::ng-deep .fc-button-primary:not(:disabled).fc-button-active {
+  background-color: #4a332a !important; /* Un tono ligeramente más oscuro al presionar */
+  border-color: #4a332a !important;
+}
+
+::ng-deep .fc-toolbar-title {
+  color: #3b281f !important; /* El mismo tono marrón oscuro de los números */
+  display: inline-block;
+  max-width: 250px !important;
+  min-width: 200px !important;
+}
+
+::ng-deep .fc-toolbar-title::first-letter {
+  text-transform: uppercase !important;
+  // font-size: 5px !important;
+}

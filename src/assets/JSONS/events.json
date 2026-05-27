@@ -1,0 +1,65 @@
+[
+  {
+    "id": "1",
+    "title": "Hablar con Giussepe",
+    "start": "2026-01-30"
+  },
+  {
+    "id": "2",
+    "title": "Visita punto de venta",
+    "start": "2026-01-29"
+  },
+  {
+    "id": "3",
+    "title": "Visita de seguimiento",
+    "start": "2026-01-31"
+  },
+  {
+    "id": "4",
+    "title": "Visita de seguimiento",
+    "start": "2026-01-28",
+    "description": "Revision de cumplimiento de manual de convivencia",
+    "author": "Luisa Flores",
+    "place": "Mall plaza"
+
+  },
+  {
+    "id": "5",
+    "title": "Tarea y",
+    "start": "2026-01-28",
+    "description": "Revision de cumplimiento de manual de convivencia",
+    "author": "Luisa Flores",
+    "place": "Caribe plaza"
+  },
+  {
+    "id": "6",
+    "title": "Mantenimiento de equipos",
+     "start": "2026-02-04T09:00:00",
+    "end": "2026-02-04T10:30:00",
+    "description": "Mantenimiento de impresoras y equipos",
+    "author": "Giussepe Robles",
+    "place": "San Martín"
+  },
+  {
+    "id": "7",
+    "title": "Mantenimiento de equipos",
+     "start": "2026-02-04T09:00:00",
+    "end": "2026-02-04T10:30:00",
+    "description": "Mantenimiento de impresoras y equipos",
+    "author": "Giussepe Robles",
+    "place": "San Martín"
+  },
+  {
+    "id": "8",
+    "title": "Mantenimiento de Redes",
+    "start": "2026-01-28",
+    "description": "Mantenimiento de Rede",
+    "author": "Giussepe Robles",
+    "place": "San Martín"
+  },
+  {
+    "id": "9",
+    "title": "Tarea z",
+    "start": "2026-01-28"
+  }
+]

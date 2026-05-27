@@ -1,0 +1,130 @@
+<ion-content class="ion-padding custom-bg">
+
+  <button class="float-back-btn" (click)="goBack()">
+    <ion-icon name="chevron-back-outline"></ion-icon>
+  </button>
+
+  <div class="welcome-section">
+    <p class="subtitle">WELCOME BACK</p>
+    <h1 class="greeting">{{greeting}}<br />{{firstName}}</h1>
+    <div class="role-badge">
+      <ion-icon name="briefcase"></ion-icon>
+      <span>{{department}}</span>
+    </div>
+  </div>
+
+  <div class="time-widget">
+    <span class="time-label">LOCAL TIME</span>
+    <h2 class="time-value">{{ currentTime | date:'HH:mm:ss' }}</h2>
+    <div class="time-divider"></div>
+  </div>
+
+  <div class="section-header">
+    <h2>Gestion Documental</h2>
+    <p>Crepes & Waffles Management Hub</p>
+  </div>
+
+  <div class="document-cards">
+    @for (item of finalFormats; track item) {
+      <div
+        (click)="goToCreateVisit(item.name, item.title)"
+        class="custom-card doc-card">
+        <div class="card-top">
+          <div class="icon-wrapper">
+            <ion-icon name="document-text"></ion-icon>
+          </div>
+        </div>
+        <h3>{{item.title}}</h3>
+        <p>{{item.description}}</p>
+        <div class="card-bottom">
+          <span class="version-size">{{item.version}} • {{item.size}}</span>
+        </div>
+      </div>
+    }
+
+    <!-- <div class="custom-card doc-card">
+    <div class="card-top">
+      <div class="icon-wrapper">
+        <ion-icon name="document-text"></ion-icon>
+      </div>
+      <ion-icon name="ellipsis-vertical" class="more-icon"></ion-icon>
+    </div>
+    <h3>Checklist de Limpieza</h3>
+    <p>Protocolos de higiene y seguridad para el cierre de operaciones diarias.</p>
+    <div class="card-bottom">
+      <span class="version-size">V3.0 • 1.1 MB</span>
+    </div>
+  </div> -->
+</div>
+
+<div class="section-header">
+  <h2>Visitas completadas este mes</h2>
+</div>
+
+<div class="custom-card visits-card">
+  <div class="chart-container">
+    <svg viewBox="0 0 36 36" class="circular-chart">
+      <path class="circle"
+        [style.strokeDasharray]="porcentajeMeta + ', 100'"
+       d="M18 2.0845
+       a 15.9155 15.9155 0 0 1 0 31.831
+      a 15.9155 15.9155 0 0 1 0 -31.831"
+        />
+        <path class="circle"
+          [attr.stroke-dasharray]="dashArrayDinamico"
+        d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+          />
+        </svg>
+        <div class="chart-content">
+          <span class="number">{{ visitLength }}</span>
+          <span class="label">VISITAS</span>
+        </div>
+      </div>
+
+      @if (goalLength !=0) {
+        <div class="goal-info">
+          <div class="goal-icon">
+            <ion-icon name="checkmark-circle"></ion-icon>
+          </div>
+          <div class="goal-text">
+            <h4>Meta Mensual Alcanzada al {{ porcentajeMeta }}%</h4>
+            <p>Has completado {{ visitLength }} de las {{ goalLength }} visitas programadas para este periodo.</p>
+          </div>
+        </div>
+      }
+
+      <div class="action-buttons">
+        <button class="btn-primary">Ver Reporte Detallado</button>
+        <button class="btn-secondary">Historial</button>
+      </div>
+    </div>
+
+    <!-- <div class="activity-section">
+    <h3>Actividad Reciente</h3>
+    <ul class="timeline">
+      <li>
+        <span class="dot dark"></span>
+        <div class="content">
+          <h4>Inventario Subido</h4>
+          <p>Hace 2 horas por Sofia V.</p>
+        </div>
+      </li>
+      <li>
+        <span class="dot light"></span>
+        <div class="content">
+          <h4>Revisión de Checklist</h4>
+          <p>Hace 4 horas • Pendiente</p>
+        </div>
+      </li>
+      <li>
+        <span class="dot dark"></span>
+        <div class="content">
+          <h4>Firma de Novedades</h4>
+          <p>Ayer a las 18:30</p>
+        </div>
+      </li>
+    </ul>
+  </div> -->
+</ion-content>

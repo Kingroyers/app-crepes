@@ -1,0 +1,93 @@
+// ── Vista de Tarjeta (Puntos de Venta) ────────────────────────────────────
+
+/* Ajuste para quitar los márgenes por defecto de ion-card si lo estás usando como contenedor */
+ion-card.dm-card-limpia {
+  margin: 12px 16px;
+  box-shadow: none;
+  background: transparent;
+}
+
+.dm-list-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 16px 18px;
+  margin-bottom: 14px;
+  box-shadow: 0 4px 16px rgba(107, 78, 61, 0.1);
+  border-left: 5px solid #6B4E3D; // Tu color brown primario
+  display: flex;
+  flex-direction: column;
+  gap: 12px; // Separación entre la cabecera y el horario
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 8px rgba(107, 78, 61, 0.15);
+  }
+}
+
+// ── Cabecera: Nombre y Estado ─────────────────────────────────────────────
+.dm-list-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.dm-list-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #3e2b22; // Tu texto oscuro
+  flex: 1;
+}
+
+// ── Badge de Estados (Esquina superior derecha) ───────────────────────────
+.dm-status-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+// Colores Dinámicos para el estado con FONDO MÁS VISIBLE
+.is-abierto {
+  background: rgba(40, 167, 69, 0.3); // VERDE MÁS VISIBLE
+  color: #28a745;                     // Verde fuerte para el texto
+}
+
+.is-cerrado {
+  background: rgba(235, 68, 90, 0.3); // ROJO MÁS VISIBLE
+  color: #eb445a;                     // Rojo fuerte para el texto
+}
+
+.is-extraordinario {
+  background: rgba(107, 78, 61, 0.3); // MARRÓN MÁS VISIBLE
+  color: #6B4E3D;                     // Marrón fuerte para el texto
+}
+
+// ── Contenedor de metadatos (Horario) ─────────────────────────────────────
+.dm-list-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.dm-schedule-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #6B4E3D;
+  background: rgba(107, 78, 61, 0.08); // Fondo sutil basado en tu color
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-weight: 500;
+
+  ion-icon {
+    font-size: 16px;
+  }
+}

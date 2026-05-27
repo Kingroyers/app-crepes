@@ -1,0 +1,115 @@
+<!-- ─── Header fijo (arriba) ───────────────────────────────────────────── -->
+<div class="modal-head">
+  <!-- Modo vista: cerrar | título | editar -->
+  @if (!isEditing) {
+    <button class="head-btn" (click)="dismiss()" aria-label="Cerrar perfil">
+      <ion-icon name="close-outline"></ion-icon>
+    </button>
+    <span class="head-title">Mi perfil</span>
+    <button class="head-btn" (click)="toggleEdit()" aria-label="Editar perfil">
+      <ion-icon name="pencil-outline"></ion-icon>
+    </button>
+  }
+
+  <!-- Modo edición: cancelar | título | guardar -->
+  @if (isEditing) {
+    <button class="head-btn" (click)="cancelEdit()" aria-label="Cancelar edición">
+      <ion-icon name="close-outline"></ion-icon>
+    </button>
+    <span class="head-title">Editar perfil</span>
+    <button class="head-btn head-btn--save" (click)="saveProfile()" [disabled]="isSaving" aria-label="Guardar cambios">
+      @if (isSaving) {
+        <ion-spinner name="crescent" class="head-spinner"></ion-spinner>
+      }
+      @if (!isSaving) {
+        <ion-icon name="checkmark-outline"></ion-icon>
+      }
+    </button>
+  }
+</div>
+
+<!-- ─── Cuerpo scrolleable ────────────────────────────────────────────── -->
+<div class="modal-body">
+
+  <!-- Avatar -->
+  <div class="avatar-section">
+    <div class="avatar-wrap" [class.avatar-wrap--editable]="isEditing" (click)="isEditing && pickImage()">
+      @if (!previewPhoto && !user?.photoURL) {
+        <div class="avatar-circle">
+          <span class="avatar-initials">{{ initials }}</span>
+        </div>
+      }
+      @if (previewPhoto || user?.photoURL) {
+        <img
+          class="avatar-photo"
+          [src]="previewPhoto || user?.photoURL"
+          alt="Foto de perfil"
+          />
+      }
+      @if (isEditing) {
+        <div class="avatar-overlay">
+          <ion-icon name="camera-outline"></ion-icon>
+        </div>
+      }
+    </div>
+    <input #fileInput type="file" accept="image/*" (change)="onFileSelected($event)" style="display:none" />
+    @if (isEditing) {
+      <p class="avatar-hint">Toca para cambiar foto</p>
+    }
+    @if (!isEditing) {
+      <p class="avatar-name">{{ user?.name }} {{ user?.lastName }}</p>
+    }
+  </div>
+
+  <!-- Modo vista -->
+  @if (!isEditing) {
+    <div class="info-section">
+      <div class="info-row">
+        <div class="info-icon-wrap">
+          <ion-icon name="mail-outline"></ion-icon>
+        </div>
+        <div class="info-content">
+          <span class="info-label">Correo electrónico</span>
+          <span class="info-value">{{ user?.email }}</span>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon-wrap">
+          <ion-icon name="business-outline"></ion-icon>
+        </div>
+        <div class="info-content">
+          <span class="info-label">Departamento</span>
+          <span class="info-value">{{ user?.department || 'Sin asignar' }}</span>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Modo edición: solo campos, sin botones -->
+  @if (isEditing) {
+    <div class="edit-section">
+      <div class="form-group">
+        <label class="form-label" for="edit-name">Nombre</label>
+        <input id="edit-name" class="form-input" type="text"
+          [(ngModel)]="editForm.name" placeholder="Tu nombre" autocomplete="given-name" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="edit-lastname">Apellido</label>
+          <input id="edit-lastname" class="form-input" type="text"
+            [(ngModel)]="editForm.lastName" placeholder="Tu apellido" autocomplete="family-name" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="edit-dept">Departamento</label>
+            <input id="edit-dept" class="form-input" type="text"
+              [(ngModel)]="editForm.department" placeholder="Tu departamento" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="edit-doc">Documento</label>
+              <input id="edit-doc" class="form-input" type="text"
+                [(ngModel)]="editForm.doc" placeholder="Numero de documento" />
+              </div>
+            </div>
+          }
+
+        </div>
+

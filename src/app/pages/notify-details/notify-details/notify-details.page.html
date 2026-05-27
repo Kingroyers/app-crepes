@@ -1,0 +1,122 @@
+<app-header></app-header>
+
+<ion-content>
+  @if (selectedItem) {
+    <div class="dm-root">
+      <!-- ── HEADER ─────────────────────────────────── -->
+      <div class="dm-header">
+        <div class="dm-header-top">
+          <div class="dm-badge">
+            <ion-icon name="notifications-outline"></ion-icon>
+            <span>Notificación</span>
+          </div>
+        </div>
+        <p class="dm-greeting">Mensaje recibido</p>
+        <h1 class="dm-title">{{ selectedItem.message }}</h1>
+      </div>
+      <!-- ── CONTENIDO ──────────────────────────────── -->
+      <div class="dm-content-wrapper">
+        <!-- INFO NOTIFICACIÓN -->
+        <div class="dm-section">
+          <div class="dm-row">
+            <span class="dm-row-icon">
+              <ion-icon name="time-outline"></ion-icon>
+            </span>
+            <div>
+              <span class="dm-row-label">Recibida el</span>
+              <span class="dm-row-val">{{ selectedItem.date | date:'EEEE d \'de\' MMMM yyyy, HH:mm' }}</span>
+            </div>
+          </div>
+        </div>
+        <!-- DETALLES DEL EVENTO (Si existe) -->
+        @if (selectedItem.event) {
+          <p class="section-title">Detalles del Evento</p>
+          <div class="dm-section">
+            <div class="dm-row">
+              <span class="dm-row-icon">
+                <ion-icon name="bookmark-outline"></ion-icon>
+              </span>
+              <div>
+                <span class="dm-row-label">Título del evento</span>
+                <span class="dm-row-val">{{ selectedItem.event.title }}</span>
+              </div>
+            </div>
+            <div class="dm-row">
+              <span class="dm-row-icon">
+                <ion-icon name="calendar-outline"></ion-icon>
+              </span>
+              <div>
+                <span class="dm-row-label">Fecha</span>
+                <span class="dm-row-val">
+                  {{ selectedItem.event.start | date:'EEEE d \'de\' MMMM yyyy' }}
+                  @if (selectedItem.event.start !== selectedItem.event.end) {
+                    - {{ selectedItem.event.end | date:'EEEE d \'de\' MMMM yyyy' }}
+                  }
+                </span>
+              </div>
+            </div>
+            <div class="dm-row">
+              <span class="dm-row-icon">
+                <ion-icon name="time-outline"></ion-icon>
+              </span>
+              <div>
+                <span class="dm-row-label">Horario</span>
+                <span class="dm-row-val">
+                  {{ selectedItem.event.start | date:'HH:mm' }} – {{ selectedItem.event.end | date:'HH:mm' }}
+                </span>
+              </div>
+            </div>
+            <div class="dm-row">
+              <span class="dm-row-icon">
+                <ion-icon name="location-outline"></ion-icon>
+              </span>
+              <div>
+                <span class="dm-row-label">Punto de Venta</span>
+                <span class="dm-row-val">{{ selectedItem.event.pdv }}</span>
+              </div>
+            </div>
+            <div class="dm-row">
+              <span class="dm-row-icon">
+                <ion-icon name="business-outline"></ion-icon>
+              </span>
+              <div>
+                <span class="dm-row-label">Área / Departamento</span>
+                <span class="dm-row-val">{{ selectedItem.event.department }}</span>
+              </div>
+            </div>
+            <div class="dm-row">
+              <span class="dm-row-icon">
+                <ion-icon name="person-outline"></ion-icon>
+              </span>
+              <div>
+                <span class="dm-row-label">Responsable</span>
+                <span class="dm-row-val">{{ selectedItem.event.responsible }}</span>
+              </div>
+            </div>
+          </div>
+          <!-- Descripción del evento -->
+          @if (selectedItem.event.description) {
+            <div class="dm-desc-card">
+              <p class="dm-desc-label">Descripción del evento</p>
+              <p class="dm-desc-text">{{ selectedItem.event.description }}</p>
+            </div>
+          }
+        }
+        <!-- BOTONES DE ACCIÓN -->
+        <div class="action-buttons">
+          <button class="btn-action btn-accept" (click)="onAccept()">
+            <ion-icon name="checkmark-circle-outline"></ion-icon>
+            Aceptar compartir espacio
+          </button>
+          <button class="btn-action btn-reject" (click)="onReject()">
+            <ion-icon name="close-circle-outline"></ion-icon>
+            No compartir espacio
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+</ion-content>
+
+
+

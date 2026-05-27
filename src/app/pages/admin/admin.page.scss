@@ -1,0 +1,731 @@
+// ─── Design Tokens ────────────────────────────────────────────────────────────
+$primary:    #3D1F1F;
+$primary-lt: #6B4E3D;
+$bg:         #F5F4F0;
+$card-bg:    #FFFFFF;
+$text:       #1A1A1A;
+$text-muted: #888;
+$border:     #E5E2DC;
+$radius:     16px;
+$radius-sm:  10px;
+
+// ─── Header (fijo fuera del ion-content) ──────────────────────────────────────
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 52px 20px 16px;
+  background: $bg;
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: $primary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    ion-icon {
+      color: #fff;
+      font-size: 1.2rem;
+    }
+  }
+
+  &__titles {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__sup {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: $text-muted;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: $text;
+    line-height: 1.2;
+  }
+
+  &__bell {
+    background: none;
+    border: none;
+    padding: 6px;
+    cursor: pointer;
+
+    ion-icon {
+      font-size: 1.4rem;
+      color: $text;
+    }
+  }
+}
+
+// ─── Ion Content ──────────────────────────────────────────────────────────────
+.admin-content {
+  --background: #{$bg};
+  --padding-bottom: 80px;
+}
+
+// ─── Welcome Block ────────────────────────────────────────────────────────────
+.welcome-block {
+  padding: 8px 20px 20px;
+
+  &__label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: $text-muted;
+    margin: 0 0 4px;
+  }
+
+  &__heading {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: $text;
+    margin: 0;
+    line-height: 1.2;
+
+    em {
+      font-style: italic;
+      font-weight: 800;
+    }
+  }
+}
+
+// ─── Admin Card ───────────────────────────────────────────────────────────────
+.admin-card {
+  background: $card-bg;
+  border-radius: $radius;
+  margin: 0 16px 16px;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+
+  &__heading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  &__icon-wrap {
+    width: 36px;
+    height: 36px;
+    background: rgba($primary, 0.08);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    ion-icon {
+      font-size: 1.2rem;
+      color: $primary;
+    }
+  }
+
+  &__title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: $text;
+    margin: 0;
+    line-height: 1.3;
+  }
+}
+
+// ─── Form Fields ──────────────────────────────────────────────────────────────
+.form-label {
+  display: block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: $text-muted;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.form-field {
+  margin-bottom: 14px;
+
+  &--half {
+    flex: 1;
+  }
+}
+
+.form-row {
+  display: flex;
+  gap: 12px;
+}
+
+.custom-input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid $border;
+  border-radius: $radius-sm;
+  background: #FAFAFA;
+  font-size: 0.95rem;
+  color: $text;
+  outline: none;
+  box-sizing: border-box;
+  font-family: inherit;
+  transition: border-color 0.2s;
+
+  &::placeholder {
+    color: #C5C0B8;
+  }
+
+  &:focus {
+    border-color: $primary-lt;
+  }
+
+  &--date {
+    color: $text-muted;
+  }
+}
+
+.select-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  .select-arrow {
+    position: absolute;
+    right: 12px;
+    font-size: 0.9rem;
+    color: $text-muted;
+    pointer-events: none;
+  }
+}
+
+.custom-select {
+  width: 100%;
+  padding: 11px 36px 11px 14px;
+  border: 1.5px solid $border;
+  border-radius: $radius-sm;
+  background: #FAFAFA;
+  font-size: 0.95rem;
+  color: $text;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.2s;
+
+  &:focus {
+    border-color: $primary-lt;
+  }
+}
+
+// ─── Primary Button ───────────────────────────────────────────────────────────
+.btn-primary {
+  width: 100%;
+  padding: 14px;
+  background: $primary;
+  color: #fff;
+  border: none;
+  border-radius: $radius-sm;
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: background 0.2s, transform 0.1s;
+  margin-top: 4px;
+
+  &:active {
+    background: #280f0f;
+    transform: scale(0.98);
+  }
+
+  &--sm {
+    width: auto;
+    padding: 10px 16px;
+    font-size: 0.82rem;
+    line-height: 1.3;
+    text-align: center;
+    flex-shrink: 0;
+    margin-top: 0;
+  }
+}
+
+// ─── Textarea ─────────────────────────────────────────────────────────────────
+.custom-input--textarea {
+  resize: none;
+  font-family: inherit;
+  line-height: 1.5;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+// ─── Date field centered ──────────────────────────────────────────────────────
+.form-field--date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 0 4px;
+}
+
+.form-label--center {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.datetime-btn-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+// ─── Toggle Group (Importante) ────────────────────────────────────────────────
+.toggle-group {
+  display: flex;
+  gap: 8px;
+}
+
+.toggle-option {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px;
+  border: 1.5px solid $border;
+  border-radius: $radius-sm;
+  background: #FAFAFA;
+  color: $text-muted;
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  ion-icon {
+    font-size: 1rem;
+  }
+
+  &--active {
+    border-color: $primary;
+    background: rgba($primary, 0.07);
+    color: $primary;
+    font-weight: 700;
+  }
+}
+
+// ─── Task Info Box ────────────────────────────────────────────────────────────
+.task-info-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #F0EDE8;
+  border-radius: $radius-sm;
+  padding: 14px;
+  margin-top: 4px;
+
+  &__left {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    flex: 1;
+  }
+
+  &__icon {
+    font-size: 1.1rem;
+    color: $primary-lt;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  &__text {
+    font-size: 0.78rem;
+    color: $primary-lt;
+    margin: 0;
+    line-height: 1.4;
+  }
+}
+
+// ─── Textarea ─────────────────────────────────────────────────────────────────
+.custom-input--textarea {
+  resize: none;
+  font-family: inherit;
+  line-height: 1.5;
+}
+
+// ─── Toggle Group (Importante) ────────────────────────────────────────────────
+.toggle-group {
+  display: flex;
+  gap: 8px;
+}
+
+.toggle-option {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px;
+  border: 1.5px solid $border;
+  border-radius: $radius-sm;
+  background: #FAFAFA;
+  color: $text-muted;
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  ion-icon {
+    font-size: 1rem;
+  }
+
+  &--active {
+    border-color: $primary;
+    background: rgba($primary, 0.07);
+    color: $primary;
+  }
+}
+
+// ─── Team Section ─────────────────────────────────────────────────────────────
+.team-section {
+  padding: 0 16px 24px;
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+
+  &__title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: $text;
+    margin: 0 0 4px;
+  }
+
+  &__subtitle {
+    font-size: 0.75rem;
+    color: $text-muted;
+    margin: 0;
+    max-width: 180px;
+  }
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: $primary;
+  cursor: pointer;
+  text-align: right;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  font-family: inherit;
+
+  ion-icon {
+    font-size: 0.85rem;
+  }
+}
+
+// ─── Team Member Card ─────────────────────────────────────────────────────────
+.team-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: $card-bg;
+  border-radius: $radius;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+  &__avatar {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #E8E4DE;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    ion-icon {
+      font-size: 1.4rem;
+      color: $primary-lt;
+    }
+  }
+
+  &__status-dot {
+    position: absolute;
+    bottom: 1px;
+    right: 1px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #C1B9B0;
+    border: 2px solid #fff;
+
+    &--active {
+      background: #4CAF50;
+    }
+  }
+
+  &__info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__name {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: $text;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__meta {
+    display: block;
+    font-size: 0.72rem;
+    color: $text-muted;
+    margin: 2px 0 6px;
+  }
+
+  &__tasks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+}
+
+.tasks-label {
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: $text-muted;
+}
+
+.tasks-badge {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: $primary;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// ─── Progress Bar ─────────────────────────────────────────────────────────────
+.progress-bar {
+  height: 5px;
+  background: #EAE7E2;
+  border-radius: 999px;
+  overflow: hidden;
+
+  &__fill {
+    height: 100%;
+    background: $primary;
+    border-radius: 999px;
+    transition: width 0.4s ease;
+    max-width: 100%;
+  }
+}
+
+// ─── Bottom Tab Bar ───────────────────────────────────────────────────────────
+.bottom-tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: $text;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 12px;
+  z-index: 100;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  cursor: pointer;
+
+  ion-icon {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.45);
+  }
+
+  &--active ion-icon {
+    color: #fff;
+  }
+}
+
+.tab-center-btn {
+  width: 48px;
+  height: 48px;
+  background: $primary-lt;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ion-icon {
+    font-size: 1.4rem;
+    color: #fff !important;
+  }
+}
+
+// ── Contenedor Flex: searchbar + botón ────────────────────────────
+.search-flex-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+// ── Modificadores para el <ion-searchbar> ─────────────────────────
+.custom-ionic-search {
+  padding: 0;
+  flex: 1 1 auto; /* Permite que el buscador tome el espacio sobrante */
+  width: auto !important; /* Fuerza a Ionic a ignorar su 100% por defecto */
+
+  --background: rgba(107, 78, 61, 0.05);
+  --border-radius: 20px;
+  --color: #334155;
+  --placeholder-color: rgba(107, 78, 61, 0.4);
+  --icon-color: rgba(107, 78, 61, 0.6);
+  --clear-button-color: rgba(107, 78, 61, 0.6);
+  --box-shadow: none;
+
+  border: 1.5px solid rgba($primary, 0.18);
+  border-radius: 22px;
+  height: 40px;
+  transition: all 0.2s ease;
+
+  &.searchbar-has-focus {
+    border-color: rgba($primary, 0.5);
+    box-shadow: 0 0 0 3px rgba($primary, 0.07);
+  }
+}
+
+// ── Estilos del Botón de Búsqueda ─────────────────────────────────
+.search-action-btn {
+  margin: 0;
+  height: 40px;
+  width: 44px;
+  flex-shrink: 0; /* CRÍTICO: Evita que el botón se aplaste por culpa del buscador */
+
+  --background: #6B4E3D;
+  --background-hover: #5A4133;
+  --background-activated: #4A352A;
+  --border-radius: 14px;
+  --box-shadow: 0 4px 6px -1px rgba(107, 78, 61, 0.25);
+
+  ion-icon {
+    font-size: 1.2rem;
+    color: #FFFFFF;
+  }
+}
+
+// ── User Result Card ───────────────────────────────────────────────
+.user-result-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba($primary, 0.05);
+  border: 1.5px solid rgba($primary, 0.18);
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  animation: fadeSlideIn 0.25s ease;
+
+  &__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: $primary;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    letter-spacing: 0.03em;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: $text;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__dept {
+    font-size: 0.72rem;
+    color: $primary-lt;
+    margin-top: 2px;
+  }
+
+  &__check {
+    flex-shrink: 0;
+
+    ion-icon {
+      font-size: 1.4rem;
+      color: #4CAF50;
+    }
+  }
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.searcherContainer{
+  margin-left: 20px;
+  margin-right: 20px;
+}

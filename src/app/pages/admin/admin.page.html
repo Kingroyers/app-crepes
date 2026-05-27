@@ -1,0 +1,253 @@
+<app-header>
+
+</app-header>
+
+<!-- ─── Content ─────────────────────────────────────────────────────────── -->
+<ion-content class="admin-content">
+
+  <!-- Welcome -->
+  <div class="welcome-block">
+    <p class="welcome-block__label">ARTISAN HEARTH PANEL</p>
+    <h1 class="welcome-block__heading">Bienvenido, <em>{{firstName}}.</em></h1>
+  </div>
+
+
+  <div class="form-field">
+    <div class="searcherContainer">
+      <label class="form-label">SELECCIONAR INTEGRANTE</label>
+      <form (ngSubmit)="serchByDoc(doc); $event.preventDefault()">
+        <div class="search-flex-container">
+          <ion-searchbar
+            class="custom-ionic-search"
+            type="search"
+            placeholder="Buscar usuarios"
+            searchIcon="search-outline"
+            animated="true"
+            mode="md"
+            name="searchDoc"
+            [(ngModel)]="doc">
+          </ion-searchbar>
+          <ion-button type="submit" class="search-action-btn" mode="ios">
+            <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── Card: Asignar Metas Mensuales ─────────────────────────────────── -->
+  <div class="admin-card">
+    <div class="admin-card__heading">
+      <div class="admin-card__icon-wrap">
+        <ion-icon name="cellular-outline"></ion-icon>
+      </div>
+      <h2 class="admin-card__title">Asignar Metas<br/>Mensuales</h2>
+    </div>
+
+
+    @if (savedUser) {
+      <div class="user-result-card">
+        <div class="user-result-card__avatar">
+          {{ savedUser.name.charAt(0).toUpperCase() }}{{ savedUser.lastName.charAt(0).toUpperCase() }}
+        </div>
+        <div class="user-result-card__info">
+          <span class="user-result-card__name">{{ savedUser.name }} {{ savedUser.lastName }}</span>
+          <span class="user-result-card__dept">{{ savedUser.department }}</span>
+        </div>
+        <div class="user-result-card__check">
+          <ion-icon name="checkmark-circle"></ion-icon>
+        </div>
+      </div>
+    }
+
+
+    <div class="form-row">
+      <div class="form-field form-field--half">
+        <label class="form-label">VISITAS META</label>
+        <input
+          class="custom-input"
+          type="number"
+          min="1"
+          placeholder="0"
+          [(ngModel)]="goalValue"
+          />
+      </div>
+      <div class="form-field form-field--half">
+        <label class="form-label">MES</label>
+        <div class="select-wrapper">
+          <select class="custom-select" [(ngModel)]="selectedMonth">
+            <option value="2025-01">Enero</option>
+            <option value="2025-02">Febrero</option>
+            <option value="2025-03">Marzo</option>
+            <option value="2025-04">Abril</option>
+            <option value="2025-05">Mayo</option>
+            <option value="2025-06">Junio</option>
+            <option value="2025-07">Julio</option>
+            <option value="2025-08">Agosto</option>
+            <option value="2025-09">Septiembre</option>
+            <option value="2025-10">Octubre</option>
+            <option value="2025-11">Noviembre</option>
+            <option value="2025-12">Diciembre</option>
+            <option value="2026-01">Enero 2026</option>
+            <option value="2026-02">Febrero 2026</option>
+            <option value="2026-03">Marzo 2026</option>
+            <option value="2026-04">Abril 2026</option>
+            <option value="2026-05">Mayo 2026</option>
+            <option value="2026-06">Junio 2026</option>
+          </select>
+          <ion-icon name="chevron-down-outline" class="select-arrow"></ion-icon>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-primary" (click)="asignarMeta()">
+      Asignar Meta &nbsp;→
+    </button>
+  </div>
+
+  <!-- ── Card: Delegar Tareas ──────────────────────────────────────────── -->
+
+
+
+  <div class="admin-card">
+    <div class="admin-card__heading">
+      <div class="admin-card__icon-wrap">
+        <ion-icon name="clipboard-outline"></ion-icon>
+      </div>
+      <h2 class="admin-card__title">Delegar Tareas</h2>
+    </div>
+    @if (savedUser) {
+      <div class="user-result-card">
+        <div class="user-result-card__avatar">
+          {{ savedUser.name.charAt(0).toUpperCase() }}{{ savedUser.lastName.charAt(0).toUpperCase() }}
+        </div>
+        <div class="user-result-card__info">
+          <span class="user-result-card__name">{{ savedUser.name }} {{ savedUser.lastName }}</span>
+          <span class="user-result-card__dept">{{ savedUser.department }}</span>
+        </div>
+        <div class="user-result-card__check">
+          <ion-icon name="checkmark-circle"></ion-icon>
+        </div>
+      </div>
+    }
+
+    <div class="form-field">
+      <label class="form-label">TÍTULO DE LA TAREA</label>
+      <input
+        class="custom-input"
+        type="text"
+        placeholder="Ej: Auditoría de Inventario Regional"
+        [(ngModel)]="taskName"
+        />
+    </div>
+
+    <div class="form-field">
+      <label class="form-label">DESCRIPCIÓN</label>
+      <textarea
+        class="custom-input custom-input--textarea"
+        placeholder="Describe el objetivo de la tarea..."
+        rows="3"
+        [(ngModel)]="taskDescription">
+      </textarea>
+    </div>
+
+    <div class="form-field">
+      <label class="form-label">ENLACE DE REFERENCIA (opcional)</label>
+      <input
+        class="custom-input"
+        type="url"
+        placeholder="Ej: https://docs.google.com/..."
+        [(ngModel)]="taskLink"
+        />
+    </div>
+
+    <div class="form-field">
+      <label class="form-label">¿ES IMPORTANTE?</label>
+      <div class="toggle-group">
+        <button
+          class="toggle-option"
+          [class.toggle-option--active]="taskImportant === 'si'"
+          (click)="taskImportant = 'si'">
+          <ion-icon name="alert-circle-outline"></ion-icon> Sí
+        </button>
+        <button
+          class="toggle-option"
+          [class.toggle-option--active]="taskImportant === 'no'"
+          (click)="taskImportant = 'no'">
+          <ion-icon name="remove-circle-outline"></ion-icon> No
+        </button>
+      </div>
+    </div>
+
+
+    <div class="form-field form-field--date">
+      <label class="form-label form-label--center">FECHA DE ENTREGA</label>
+      <div class="datetime-btn-wrap">
+        @if (minDate) {
+          <ion-datetime-button datetime="limitDate"></ion-datetime-button>
+        }
+      </div>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime
+            id="limitDate"
+            [min]="minDate"
+            [(ngModel)]="taskDueDate"
+            locale="es-CO">
+          </ion-datetime>
+        </ng-template>
+      </ion-modal>
+    </div>
+
+
+    <div class="task-info-box">
+      <div class="task-info-box__left">
+        <ion-icon name="information-circle-outline" class="task-info-box__icon"></ion-icon>
+        <p class="task-info-box__text">
+          La tarea será notificada inmediatamente via correo institucional.
+        </p>
+      </div>
+      <button class="btn-primary btn-primary--sm" (click)="asignarTarea()">
+        Asignar<br/>Tarea
+      </button>
+    </div>
+  </div>
+
+  <!-- ── Resumen de Equipo ─────────────────────────────────────────────── -->
+  <!-- <div class="team-section">
+  <div class="team-section__header">
+    <div>
+      <h2 class="team-section__title">Resumen de Equipo</h2>
+      <p class="team-section__subtitle">Estado actual de cumplimiento y tareas activas.</p>
+    </div>
+    <button class="btn-link">
+      Ver<br/>Todos <ion-icon name="open-outline"></ion-icon>
+    </button>
+  </div>
+
+
+  <div class="team-card" *ngFor="let member of teamSummary">
+    <div class="team-card__avatar">
+      <ion-icon name="person"></ion-icon>
+      <span class="team-card__status-dot" [class.team-card__status-dot--active]="member.active"></span>
+    </div>
+    <div class="team-card__info">
+      <span class="team-card__name">{{ member.name }}</span>
+      <span class="team-card__meta">Meta: {{ member.visits }}/{{ member.goal }} visitas</span>
+      <div class="progress-bar">
+        <div
+          class="progress-bar__fill"
+          [style.width.%]="member.goal > 0 ? (member.visits / member.goal) * 100 : 0"
+        ></div>
+      </div>
+    </div>
+    <div class="team-card__tasks">
+      <span class="tasks-label">TAREAS</span>
+      <span class="tasks-badge">{{ member.tasks }}</span>
+    </div>
+  </div>
+
+</div>
+
+</ion-content> -->
+

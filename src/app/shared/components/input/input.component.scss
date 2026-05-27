@@ -1,0 +1,13 @@
+ion-input {
+  --color: #2d3436;
+  font-size: 15px;
+}
+
+ion-input-password-toggle{
+  justify-content: end;
+}
+
+:host {
+  width: 100%;
+}
+

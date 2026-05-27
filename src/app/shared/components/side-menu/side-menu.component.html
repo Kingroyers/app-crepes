@@ -1,0 +1,125 @@
+<ion-menu contentId="main-content" side="end" menuId="main-menu">
+
+  <!-- ─── Header ────────────────────────────────────────────────────────── -->
+  <div class="menu-header">
+    <div class="menu-brand">
+      <img class="brand-logo" src="assets/imgPrueba/crepesLogo.png" alt="Crepes & Waffles" />
+      <div class="brand-info">
+        <span class="brand-name">C&amp;W</span>
+        <span class="brand-sub">Gestión Integral</span>
+      </div>
+    </div>
+    <button class="close-btn" (click)="closeMenu()" aria-label="Cerrar menú">
+      <ion-icon name="close-outline"></ion-icon>
+    </button>
+  </div>
+
+  <!-- ─── Contenido ─────────────────────────────────────────────────────── -->
+  <ion-content class="menu-content">
+
+    <p class="section-label">Navegación</p>
+    <div class="nav-group">
+      <button class="nav-item" (click)="navigate('/home')">
+        <div class="nav-icon-wrap">
+          <ion-icon name="home-outline"></ion-icon>
+        </div>
+        <span class="nav-label">Inicio</span>
+        <ion-icon name="chevron-forward-outline" class="nav-arrow"></ion-icon>
+      </button>
+
+      <button class="nav-item" (click)="navigate('/notes')">
+        <div class="nav-icon-wrap">
+          <ion-icon name="calendar-outline"></ion-icon>
+        </div>
+        <span class="nav-label">Eventos</span>
+        <ion-icon name="chevron-forward-outline" class="nav-arrow"></ion-icon>
+      </button>
+
+      <button class="nav-item" (click)="navigate('/add-task')">
+        <div class="nav-icon-wrap">
+          <ion-icon name="checkmark-circle-outline"></ion-icon>
+        </div>
+        <span class="nav-label">Tareas</span>
+        <ion-icon name="chevron-forward-outline" class="nav-arrow"></ion-icon>
+      </button>
+      
+      <!-- <button class="nav-item" (click)="navigate('/sacanner-page')">
+        <div class="nav-icon-wrap">
+          <ion-icon name="qr-code-outline"></ion-icon>
+        </div>
+        <span class="nav-label">Escáner</span>
+        <ion-icon name="chevron-forward-outline" class="nav-arrow"></ion-icon>
+      </button> -->
+
+      <!-- BOTONES ADMINISTRATIVOS -->
+      @if (userRole === 'admin' || userRole === 'super-admin' || userRole === 'jefe' ) {
+      <button class="nav-item admin-item" (click)="navigate('/start-visit')">
+        <div class="nav-icon-wrap">
+          <ion-icon name="calendar-number-outline"></ion-icon>
+        </div>
+        <span class="nav-label">Crear Visita</span>
+        <ion-icon name="chevron-forward-outline" class="nav-arrow"></ion-icon>
+      </button>
+      }
+
+      @if (userRole === 'super-admin') {
+      <button class="nav-item super-admin-item" (click)="navigate('/admin')">
+        <div class="nav-icon-wrap">
+          <ion-icon name="briefcase-outline"></ion-icon>
+        </div>
+        <span class="nav-label">Panel administrativo</span>
+        <ion-icon name="chevron-forward-outline" class="nav-arrow"></ion-icon>
+      </button>
+      }
+
+      @if (userRole === 'super-admin') {
+      <button class="nav-item super-admin-item" (click)="navigate('/manage-user')">
+        <div class="nav-icon-wrap">
+          <ion-icon name="people-outline"></ion-icon>
+        </div>
+        <span class="nav-label">Gestión Usuarios</span>
+        <ion-icon name="chevron-forward-outline" class="nav-arrow"></ion-icon>
+      </button>
+      }
+
+    </div>
+
+    <p class="section-label">Herramientas</p>
+    <div class="nav-group">
+      <button class="nav-item nav-item--disabled">
+        <div class="nav-icon-wrap">
+          <ion-icon name="bar-chart-outline"></ion-icon>
+        </div>
+        <span class="nav-label">Reportes</span>
+        <span class="coming-badge">Pronto</span>
+      </button>
+
+      <button class="nav-item nav-item--disabled">
+        <div class="nav-icon-wrap">
+          <ion-icon name="settings-outline"></ion-icon>
+        </div>
+        <span class="nav-label">Configuración</span>
+        <span class="coming-badge">Pronto</span>
+      </button>
+
+      <button class="nav-item nav-item--disabled">
+        <div class="nav-icon-wrap">
+          <ion-icon name="help-circle-outline"></ion-icon>
+        </div>
+        <span class="nav-label">Ayuda</span>
+        <span class="coming-badge">Pronto</span>
+      </button>
+    </div>
+
+  </ion-content>
+
+  <!-- ─── Footer ────────────────────────────────────────────────────────── -->
+  <div class="menu-footer">
+    <div class="footer-divider"></div>
+    <button class="logout-btn" (click)="signOut()">
+      <ion-icon name="log-out-outline"></ion-icon>
+      <span>Cerrar sesión</span>
+    </button>
+  </div>
+
+</ion-menu>

@@ -1,0 +1,30 @@
+[
+  {
+    "value": "Animals",
+    "id": "animals"
+  },
+  {
+    "value": "Characters",
+    "id": "characters"
+  },
+  {
+    "value": "Arquitecture",
+    "id": "arquitecture"
+  },
+  {
+    "value": "Forniture",
+    "id": "forniture"
+  },
+  {
+    "value": "Aircraft",
+    "id": "aircraft"
+  },
+  {
+    "value": "Vehicles",
+    "id": "vehicles"
+  },
+  {
+    "value": "Plants",
+    "id": "plants"
+  }
+]

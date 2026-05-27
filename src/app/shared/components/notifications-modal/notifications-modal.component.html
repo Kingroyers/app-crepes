@@ -1,0 +1,91 @@
+<div class="nm-root">
+
+  <!-- ── HEADER ─────────────────────────────────── -->
+  <div class="nm-header">
+    <div class="nm-handle"></div>
+
+    <div class="nm-header-top">
+      <div class="nm-title-wrap">
+        <ion-icon name="notifications-outline" class="nm-header-icon"></ion-icon>
+        <h2 class="nm-title">Notificaciones</h2>
+        @if (unreadCount > 0) {
+          <span class="nm-badge">{{ unreadCount }}</span>
+        }
+      </div>
+      <ion-button fill="clear" class="nm-close" (click)="closeModal()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </div>
+
+    @if (!isLoading && notifications.length > 0) {
+      <div class="nm-subhead">
+        <span class="nm-subtitle">
+          {{ unreadCount > 0 ? unreadCount + ' sin leer' : 'Todo al día' }}
+        </span>
+        @if (unreadCount > 0) {
+          <button class="nm-mark-all" (click)="markAllAsRead()">
+            <ion-icon name="checkmark-done-outline"></ion-icon>
+            Marcar todo leído
+          </button>
+        }
+      </div>
+    }
+  </div>
+
+  <!-- ── CONTENIDO ──────────────────────────────── -->
+  <ion-content class="nm-content">
+
+    <!-- Loading -->
+    @if (isLoading) {
+      <div class="nm-loading">
+        <ion-spinner name="crescent" color="medium"></ion-spinner>
+        <span>Cargando notificaciones…</span>
+      </div>
+    }
+
+    <!-- Empty state -->
+    @if (!isLoading && notifications.length === 0) {
+      <div class="nm-empty">
+        <div class="nm-empty-icon">
+          <ion-icon name="notifications-off-outline"></ion-icon>
+        </div>
+        <p class="nm-empty-title">Sin notificaciones</p>
+        <p class="nm-empty-sub">Cuando alguien te notifique sobre un evento, aparecerá aquí.</p>
+      </div>
+    }
+
+    <!-- Lista -->
+    @if (!isLoading && notifications.length > 0) {
+      <div class="nm-list">
+        @for (notif of notifications; track notif) {
+          <button
+            class="nm-item"
+            [class.nm-item--unread]="!notif.read"
+            (click)="onNotifTap(notif)"
+            >
+            <div class="nm-item-icon" [class.nm-item-icon--unread]="!notif.read">
+              <ion-icon name="notifications-outline"></ion-icon>
+              @if (!notif.read) {
+                <span class="nm-dot"></span>
+              }
+            </div>
+            <div class="nm-item-body">
+              <p class="nm-item-msg">{{ notif.message }}</p>
+              <span class="nm-item-date">
+                <ion-icon name="time-outline"></ion-icon>
+                {{ notif.date | date:'d MMM yyyy · HH:mm' }}
+              </span>
+            </div>
+            @if (!notif.read) {
+              <ion-icon
+                name="ellipse"
+                class="nm-unread-dot"
+              ></ion-icon>
+            }
+          </button>
+        }
+      </div>
+    }
+
+  </ion-content>
+</div>

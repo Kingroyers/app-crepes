@@ -1,0 +1,81 @@
+<ion-header class="app-header ion-no-border">
+
+  <div class="header-title-wrap">
+    <div class="header-logo-row">
+      <img src="assets/imgPrueba/crepesLogo.png" alt="Crepes & Waffles" class="header-logo" />
+      <div class="header-text-col">
+        <span class="header-main-title">Gestión de Usuarios</span>
+        <span class="header-sub-title">Panel de administración</span>
+      </div>
+      <div class="header-shield">
+        <ion-icon name="shield-checkmark-outline"></ion-icon>
+      </div>
+    </div>
+  </div>
+
+</ion-header>
+
+<div class="header-content">
+  <form (ngSubmit)="serchByDoc(doc); $event.preventDefault()">
+    <div class="search-flex-container">
+      <ion-searchbar
+        class="custom-ionic-search"
+        type="search"
+        placeholder="Buscar usuarios"
+        searchIcon="search-outline"
+        animated="true"
+        mode="md"
+        name="searchDoc"
+        [(ngModel)]="doc">
+      </ion-searchbar>
+
+      <ion-button type="submit" class="search-action-btn" mode="ios">
+        <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+      </ion-button>
+    </div>
+  </form>
+</div>
+
+
+<ion-content class="ion-padding">
+
+  @if (savedUser) {
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>Departamento: {{ savedUser.department }}</ion-card-subtitle>
+        <ion-card-title>{{ savedUser.name }} {{ savedUser.lastName }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Documento:</strong> {{ savedUser.doc }}</p>
+        <p><strong>Email:</strong> {{ savedUser.email }}</p>
+        <p><strong>Rol:</strong> {{ savedUser.rol }}</p>
+        <p><strong>Estado:</strong> {{ savedUser.state}}</p>
+        <ion-grid class="ion-no-padding ion-margin-top">
+          <ion-row>
+            <ion-col size="4">
+              <ion-button expand="block" color="danger" size="small" (click)="deleteUser()">
+                <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+            <ion-col size="4">
+              <ion-button expand="block" color="success" size="small" (click)="promoteUser(savedUser.rol)">
+                <ion-icon slot="icon-only" name="arrow-up-circle-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+            <ion-col size="4">
+              <ion-button expand="block" color="warning" size="small" (click)="disableUser(savedUser.email)">
+                <ion-icon slot="icon-only" name="ban-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-text-center" style="font-size: 0.75rem;">
+            <ion-col size="4">Eliminar</ion-col>
+            <ion-col size="4">Cambiar rol</ion-col>
+            <ion-col size="4">Inhabilitar</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  }
+
+</ion-content>

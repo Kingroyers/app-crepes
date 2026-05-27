@@ -1,0 +1,266 @@
+// El host ocupa toda la altura del modal y bloquea overflow
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #FEFAF4;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+// ─── Header fijo (arriba) ──────────────────────────────────────────────────
+.modal-head {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px 14px;
+  background: #6B4E3D;
+}
+
+.head-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #FFFFFF;
+  letter-spacing: 0.2px;
+}
+
+.head-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+
+  ion-icon {
+    font-size: 20px;
+    color: #FFFFFF;
+  }
+
+  &:active {
+    background: rgba(255, 255, 255, 0.28);
+    transform: scale(0.93);
+  }
+}
+
+.head-spacer {
+  width: 36px;
+}
+
+.head-btn--save {
+  background: rgba(255, 255, 255, 0.25);
+
+  ion-icon {
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  &:active:not(:disabled) {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(0.93);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.head-spinner {
+  width: 18px;
+  height: 18px;
+  color: #FFFFFF;
+}
+
+// ─── Cuerpo scrolleable ────────────────────────────────────────────────────
+.modal-body {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+// ─── Avatar ────────────────────────────────────────────────────────────────
+.avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 28px 24px 20px;
+  background: linear-gradient(180deg, #6B4E3D 0%, #6B4E3D 38%, #FEFAF4 38%);
+}
+
+.avatar-wrap {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  border: 3px solid #FFFFFF;
+  box-shadow: 0 4px 18px rgba(107, 78, 61, 0.32);
+  overflow: hidden;
+  background: linear-gradient(135deg, #C9956A 0%, #8B5E3C 100%);
+  cursor: default;
+
+  &--editable {
+    cursor: pointer;
+
+    &:active .avatar-overlay { opacity: 1; }
+  }
+}
+
+.avatar-circle {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-initials {
+  font-size: 32px;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: 1px;
+  user-select: none;
+}
+
+.avatar-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.avatar-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  border-radius: 50%;
+
+  ion-icon { font-size: 26px; color: #FFFFFF; }
+}
+
+.avatar-wrap--editable:hover .avatar-overlay { opacity: 1; }
+
+.avatar-hint {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #9E7B66;
+  text-align: center;
+}
+
+.avatar-name {
+  margin-top: 10px;
+  font-size: 19px;
+  font-weight: 700;
+  color: #1F1F1F;
+  text-align: center;
+}
+
+// ─── Info (vista) ──────────────────────────────────────────────────────────
+.info-section {
+  padding: 8px 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  background: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(107, 78, 61, 0.08);
+}
+
+.info-icon-wrap {
+  width: 38px;
+  height: 38px;
+  background: rgba(107, 78, 61, 0.1);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  ion-icon { font-size: 20px; color: #6B4E3D; }
+}
+
+.info-content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.info-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #9E7B66;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-value {
+  font-size: 15px;
+  font-weight: 500;
+  color: #1F1F1F;
+  margin-top: 2px;
+  word-break: break-word;
+}
+
+// ─── Formulario (edición) ──────────────────────────────────────────────────
+.edit-section {
+  padding: 12px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #6B4E3D;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding-left: 4px;
+}
+
+.form-input {
+  width: 100%;
+  height: 50px;
+  padding: 0 16px;
+  background: #FFFFFF;
+  border: 1.5px solid #E5D5C8;
+  border-radius: 12px;
+  font-size: 15px;
+  color: #1F1F1F;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  font-family: inherit;
+
+  &:focus {
+    border-color: #6B4E3D;
+    box-shadow: 0 0 0 3px rgba(107, 78, 61, 0.12);
+  }
+
+  &::placeholder { color: #BBA89A; }
+}
+

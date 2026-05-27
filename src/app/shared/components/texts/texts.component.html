@@ -1,0 +1,91 @@
+<div class="upcoming-section">
+
+  <!-- Encabezado de sección -->
+  <div class="section-header">
+    <div class="section-title-group">
+      <ion-icon name="calendar-outline" class="section-icon"></ion-icon>
+      <span class="section-title">Mis tareas</span>
+    </div>
+    <button class="see-all-btn" routerLink="/notes" aria-label="Ver todas mis tareas">
+      Ver todo
+      <ion-icon name="chevron-forward-outline"></ion-icon>
+    </button>
+  </div>
+
+  <!-- Skeleton de carga -->
+  @if (isLoading) {
+    <div class="skeleton-row">
+      @for (s of skeletons; track s) {
+        <div class="skeleton-card"></div>
+      }
+    </div>
+  }
+
+  <!-- Carrusel de eventos -->
+  @if (!isLoading && events.length > 0) {
+    <swiper-container
+      class="events-swiper"
+      slides-per-view="1"
+      loop="true"
+      centered-slides="false"
+      autoplay='true'
+      >
+      @for (event of events; track event; let i = $index) {
+        <swiper-slide>
+          <div class="event-card" (click)="openTaskDetail(event)" style="cursor:pointer">
+            <!-- Badge de fecha -->
+            <div class="date-badge" [style.background]="getAccentColor(i)">
+              @if (getDayLabel(event.limitDate)) {
+                <span class="badge-tag">
+                  {{ getDayLabel(event.limitDate) }}
+                </span>
+              }
+              <span class="badge-day">{{ getDayOfMonth(event.limitDate) }}</span>
+              <span class="badge-month">{{ getMonthShort(event.limitDate) }}</span>
+            </div>
+            <!-- Contenido del evento -->
+            <div class="event-body">
+              <p class="event-title">{{ event.title }}</p>
+              <div class="event-meta">
+                @if (event.link) {
+                  <div class="meta-item">
+                    <ion-icon name="arrow-redo-outline"></ion-icon>
+                    <a [href]="event.link" target="_blank" rel="noopener noreferrer">{{ event.link }}</a>
+                  </div>
+                }
+                @if (event.limitDate) {
+                  <div class="meta-item">
+                    <ion-icon name="today-outline"></ion-icon>
+                    <span>Fecha limite: {{ event.limitDate | date:'dd/MM/yyyy'}}</span>
+                  </div>
+                }
+              </div>
+              @if (event.start) {
+                <div class="event-time">
+                  <ion-icon name="time-outline"></ion-icon>
+                  <span>{{ event.start | date:'HH:mm' }}
+                    @if (event.end) {
+                      {{ event.end | date:'HH:mm' }}
+                    }
+                  </span>
+                </div>
+              }
+            </div>
+          </div>
+        </swiper-slide>
+      }
+    </swiper-container>
+  }
+
+  <!-- Estado vacío -->
+  @if (!isLoading && events.length === 0) {
+    <div class="empty-state">
+      <div class="empty-icon-wrap">
+        <ion-icon name="calendar-clear-outline"></ion-icon>
+      </div>
+      <p class="empty-title">Sin tareas pendientes</p>
+      <p class="empty-sub">Tus tareas pendientes aparecerán aquí</p>
+    </div>
+  }
+
+</div>

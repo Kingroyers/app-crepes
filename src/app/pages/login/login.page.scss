@@ -1,0 +1,334 @@
+/* Fondo general */
+ion-content {
+  --background: #f5f6f8;
+  justify-content: center;
+}
+
+/* Tarjeta principal */
+ion-card {
+
+  margin: 6px;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  background: #ffffff;
+}
+
+/* Espaciado interno */
+ion-card-content {
+  padding: 16px;
+}
+
+/* Estilo general de los items */
+ion-item {
+  --background: #f8f9fb;
+  --border-radius: 14px;
+  --padding-start: 14px;
+  --inner-padding-end: 14px;
+   margin-top: 12px; /* antes 18px */
+  border-radius: 14px;
+}
+
+.d-header {
+  width: 120px;
+  height: 110px;
+   margin: 20px auto 12px auto;
+  border-radius: 50%;
+  overflow: hidden; /* clave */
+  background: transparent;
+}
+
+
+.img-header {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* llena el círculo */
+}
+
+
+/* Etiquetas flotantes */
+ion-label {
+  color: #7a7a7a !important;
+  font-weight: 500;
+}
+
+/* Botón datetime */
+ion-datetime-button::part(native) {
+  background: #f1f2f6;
+  border-radius: 12px;
+  padding: 8px 12px;
+  color: #2d3436;
+  font-weight: 500;
+}
+
+.button-container{
+  display: grid;
+  place-items: center;
+}
+
+/* Botón principal (Login) */
+.button-container ion-button {
+  margin-top: 14px;
+  --background: #6b4f3a; /* color similar al header */
+  --border-radius: 16px;
+  height: 48px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Efecto al presionar */
+ion-button:active {
+  transform: scale(0.98);
+}
+
+/* Divider “O continuar con” */
+.divider-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8a8a8a;
+  font-size: 13px;
+  margin-top: 18px;
+
+  .line {
+    flex: 1;
+    height: 1px;
+    background: #dcdde1;
+    margin: 0 8px;
+  }
+
+  .divider-label {
+    white-space: nowrap;
+  }
+}
+
+/* Contenedor de botones sociales */
+.social-button-container {
+  margin: 8px 10px 0 10px;
+}
+
+/* Botones sociales: Google/Microsoft */
+.social-button {
+  --border-radius: 999px;
+  --border-color: #6b4e3d;
+  --border-width: 1.5px;
+  --background: #ffffff;
+  --color: #6b4e3d;
+  --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  text-transform: none;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  height: 44px;
+}
+
+.social-button ion-icon {
+  font-size: 18px;
+}
+
+/* Colores específicos */
+.social-button.google {
+  --border-color: #db4437;
+}
+
+.social-button.microsoft {
+  --border-color: #0078d4;
+}
+
+/* Texto de registro al final */
+.register-text {
+  font-size: 14px;
+  color: #555;
+
+  a {
+    color: #6b4e3d;
+    font-weight: 600;
+    text-decoration: underline;
+  }
+}
+
+/* Ajuste para pantallas grandes */
+@media (min-width: 768px) {
+  ion-card {
+    margin: 24px auto;
+    max-width: 500px;
+  }
+}
+
+
+.container-title {
+  width: 100%;
+  margin-bottom: 5px;
+  // padding: 0 24px;
+}
+
+.main-title {
+  display: flex;
+  flex-direction: column;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Parte superior izquierda */
+.brand {
+  font-size: 14px;
+  font-weight: 600;
+  color: #6B4E3D;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  align-self: center;
+}
+
+/* Parte inferior derecha */
+.subtitle {
+  font-size: 22px;
+  font-weight: 700;
+  color: #2d3436;
+  margin-top: 4px;
+  align-self: center;
+  // align-self: flex-end;
+  // margin-right: 30px;
+}
+// /* Fondo general */
+// ion-content {
+//   --background: #f5f6f8;
+//   justify-content: center;
+//   --overflow: hidden; /* evita scroll */
+// }
+
+// /* Tarjeta principal */
+// ion-card {
+//   margin: 6px; /* antes 10px */
+//   border-radius: 18px;
+//   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+//   background: #ffffff;
+// }
+
+// /* Espaciado interno */
+// ion-card-content {
+//   padding: 14px; /* antes 16px */
+// }
+
+// /* Estilo general de los items */
+// ion-item {
+//   --background: #f8f9fb;
+//   --border-radius: 14px;
+//   --padding-start: 14px;
+//   --inner-padding-end: 14px;
+//   margin-top: 12px; /* antes 18px */
+//   border-radius: 14px;
+// }
+
+// /* Logo/Header */
+// .d-header {
+//   width: 110px;
+//   height: 100px;
+//   margin: 20px auto 12px auto; /* antes 35px 25px */
+//   border-radius: 50%;
+//   overflow: hidden;
+//   background: transparent;
+// }
+
+// .img-header {
+//   width: 100%;
+//   height: 100%;
+//   object-fit: cover;
+// }
+
+// /* Botón principal */
+// .button-container ion-button {
+//   margin-top: 14px; /* antes 20px */
+//   --background: #6b4f3a;
+//   --border-radius: 16px;
+//   height: 46px;
+//   font-size: 16px;
+//   font-weight: 600;
+//   letter-spacing: 0.5px;
+//   --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+// }
+
+// /* Divider */
+// .divider-text {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   color: #8a8a8a;
+//   font-size: 13px;
+//   margin-top: 12px; /* antes 18px */
+// }
+
+// .divider-text .line {
+//   flex: 1;
+//   height: 1px;
+//   background: #dcdde1;
+//   margin: 0 8px;
+// }
+
+// /* Botones sociales */
+// .social-button-container {
+//   margin: 6px 10px 0 10px; /* antes 8px */
+// }
+
+// .social-button {
+//   --border-radius: 999px;
+//   --border-color: #6b4e3d;
+//   --border-width: 1.5px;
+//   --background: #ffffff;
+//   --color: #6b4e3d;
+//   --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+//   text-transform: none;
+//   font-size: 14px;
+//   font-weight: 600;
+//   letter-spacing: 0.3px;
+//   height: 42px; /* antes 44px */
+// }
+
+// /* Texto de registro */
+// .register-text {
+//   font-size: 14px;
+//   color: #555;
+//   margin-top: 10px; /* añadido para control */
+// }
+
+// .register-text a {
+//   color: #6b4e3d;
+//   font-weight: 600;
+//   text-decoration: underline;
+// }
+
+// /* Ajuste pantallas grandes */
+// @media (min-width: 768px) {
+//   ion-card {
+//     margin: 16px auto;
+//     max-width: 500px;
+//   }
+// }
+
+// /* Títulos */
+// .container-title {
+//   width: 100%;
+//   margin-bottom: 2px; /* antes 5px */
+// }
+
+// .main-title {
+//   display: flex;
+//   flex-direction: column;
+//   font-family: "Segoe UI", sans-serif;
+// }
+
+// .brand {
+//   font-size: 13px; /* reducido */
+//   font-weight: 600;
+//   color: #6B4E3D;
+//   letter-spacing: 1px;
+//   text-transform: uppercase;
+//   align-self: center;
+// }
+
+// .subtitle {
+//   font-size: 20px; /* antes 22px */
+//   font-weight: 700;
+//   color: #2d3436;
+//   margin-top: 2px; /* antes 4px */
+//   align-self: center;
+// }

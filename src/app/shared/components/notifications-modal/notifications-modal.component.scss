@@ -1,0 +1,285 @@
+$primary:  #6B4E3D;
+$dark:     #3e2b22;
+$medium:   #8a6d5c;
+$cream:    #F7F1E6;
+$white:    #FFFFFF;
+$unread-bg: #FEF7F0;
+$red:      #e53935;
+
+// ── Raíz ─────────────────────────────────────────────────────────────────
+.nm-root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: $cream;
+  border-radius: 20px 20px 0 0;
+  overflow: hidden;
+}
+
+// ── Handle ───────────────────────────────────────────────────────────────
+.nm-handle {
+  width: 40px;
+  height: 4px;
+  background: rgba($white, .45);
+  border-radius: 2px;
+  margin: 12px auto 0;
+}
+
+// ── Header ───────────────────────────────────────────────────────────────
+.nm-header {
+  background: linear-gradient(140deg, $primary 0%, #9a7a68 100%);
+  padding: 0 20px 20px;
+}
+
+.nm-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.nm-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nm-header-icon {
+  font-size: 22px;
+  color: rgba($white, .85);
+}
+
+.nm-title {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 700;
+  color: $white;
+}
+
+.nm-badge {
+  background: $red;
+  color: $white;
+  font-size: 11px;
+  font-weight: 700;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid rgba($white, .35);
+}
+
+.nm-close {
+  --color: rgba(#{$white}, .8);
+  --padding-start: 8px;
+  --padding-end: 8px;
+  margin: 0;
+}
+
+.nm-subhead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  gap: 8px;
+}
+
+.nm-subtitle {
+  font-size: 12px;
+  color: rgba($white, .7);
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.nm-mark-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba($white, .15);
+  border: none;
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: $white;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background .15s;
+  backdrop-filter: blur(4px);
+
+  ion-icon { font-size: 14px; }
+
+  &:active { background: rgba($white, .25); }
+}
+
+// ── Contenido ────────────────────────────────────────────────────────────
+.nm-content {
+  --background: #{$cream};
+  --padding-top: 16px;
+  --padding-start: 14px;
+  --padding-end: 14px;
+  --padding-bottom: 40px;
+}
+
+// ── Loading ───────────────────────────────────────────────────────────────
+.nm-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 48px 0;
+  color: rgba($primary, .55);
+  font-size: 14px;
+
+  ion-spinner { --color: #{$primary}; }
+}
+
+// ── Empty state ───────────────────────────────────────────────────────────
+.nm-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 52px 24px;
+  text-align: center;
+}
+
+.nm-empty-icon {
+  width: 72px;
+  height: 72px;
+  background: rgba($primary, .08);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+
+  ion-icon {
+    font-size: 34px;
+    color: rgba($primary, .45);
+  }
+}
+
+.nm-empty-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: $dark;
+  margin: 0 0 6px;
+}
+
+.nm-empty-sub {
+  font-size: 13px;
+  color: $medium;
+  line-height: 1.6;
+  margin: 0;
+}
+
+// ── Lista ─────────────────────────────────────────────────────────────────
+.nm-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nm-item {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: $white;
+  border: none;
+  border-radius: 16px;
+  padding: 14px 14px;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  box-shadow: 0 2px 10px rgba($primary, .08);
+  transition: transform .1s ease, box-shadow .1s ease;
+  position: relative;
+
+  &--unread {
+    background: $unread-bg;
+    box-shadow: 0 3px 14px rgba($primary, .13);
+    border-left: 3px solid $primary;
+  }
+
+  &:active {
+    transform: scale(.98);
+    box-shadow: 0 1px 6px rgba($primary, .07);
+  }
+}
+
+.nm-item-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba($primary, .08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+
+  ion-icon {
+    font-size: 20px;
+    color: rgba($primary, .6);
+  }
+
+  &--unread {
+    background: rgba($primary, .14);
+
+    ion-icon { color: $primary; }
+  }
+}
+
+.nm-dot {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 9px;
+  height: 9px;
+  background: $red;
+  border-radius: 50%;
+  border: 1.5px solid $white;
+}
+
+.nm-item-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.nm-item-msg {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: $dark;
+  font-weight: 400;
+
+  .nm-item--unread & {
+    font-weight: 600;
+    color: $dark;
+  }
+}
+
+.nm-item-date {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: $medium;
+
+  ion-icon { font-size: 12px; }
+}
+
+.nm-unread-dot {
+  font-size: 9px;
+  color: $primary;
+  flex-shrink: 0;
+  align-self: center;
+}

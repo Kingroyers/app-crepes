@@ -1,0 +1,92 @@
+<app-header>
+
+</app-header>
+
+<app-side-menu>
+
+</app-side-menu>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="registerForm" (ngSubmit)="doSchedule()">
+
+  <ion-card>
+
+    <ion-card-content>
+
+      <ion-item>
+        <app-input
+        type="text"
+        label="Title"
+        [control]="title"
+        >
+        </app-input>
+      </ion-item>
+
+
+      <ion-item>
+        <app-text-area
+        label="Description"
+        type="text"
+        [control]="description"
+        ></app-text-area>
+      </ion-item>
+
+      <ion-item>
+        <app-select
+        id="pdvs"
+        label="Lugar"
+        [control]="pdv"
+        >
+       </app-select>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label>Start</ion-label>
+        <ion-datetime-button datetime="startDatetime"></ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime id="startDatetime"
+            [min]="minDate"
+             formControlName="start"></ion-datetime>
+          </ng-template>
+        </ion-modal>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>End</ion-label>
+        <ion-datetime-button datetime="endDatetime"></ion-datetime-button>
+
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime id="endDatetime"
+            [min]="minDate"
+            formControlName="end"></ion-datetime >
+          </ng-template>
+        </ion-modal>
+      </ion-item>
+
+
+            <ion-item>
+              <app-select label="Departamento"
+              id="dep"
+              [control]="department"></app-select>
+        <!-- <ion-select class="select" label="Departamento" label-placement="floating">
+          <ion-select-option value="depto-1">Departamento 1</ion-select-option>
+          <ion-select-option value="depto-2">Departamento 2</ion-select-option>
+          <ion-select-option value="depto-3">Departamento 3</ion-select-option>
+          <ion-select-option value="depto-4">Departamento 4</ion-select-option>
+          <ion-select-option value="depto-5">Departamento 5</ion-select-option>
+          <ion-select-option value="depto-6">Departamento 6</ion-select-option>
+          <ion-select-option value="depto-7">Departamento 7</ion-select-option>
+          <ion-select-option value="depto-8">Departamento 8</ion-select-option>
+        </ion-select> -->
+      </ion-item>
+
+      <ion-button type="submit" [disabled]="registerForm.invalid" >Guardar</ion-button>
+    </ion-card-content>
+
+  </ion-card>
+</form>
+
+</ion-content>

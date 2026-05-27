@@ -1,0 +1,20 @@
+<ion-select
+  [label]="label"
+  label-placement="floating"
+  [id]="id"
+  (ionChange)='onSelect($event)'
+
+  >
+  @for (item of usable; track item) {
+    <ion-select-option
+    [value]="item[labelKey]">{{item[labelKey]}}</ion-select-option>
+  }
+  <!-- <ion-select-option value="plaza-bocagrande">Plaza Bocagrande</ion-select-option>
+  <ion-select-option value="san-juan">San Juan</ion-select-option>
+  <ion-select-option value="san-pedro">San Pedro</ion-select-option>
+  <ion-select-option value="san-diego">San Diego</ion-select-option>
+  <ion-select-option value="serrezuel">Serrezuela</ion-select-option>
+  <ion-select-option value="mall-plaza">Mall Plaza</ion-select-option>
+  <ion-select-option value="mall-plaza">Mall Plaza</ion-select-option>
+  <ion-select-option value="caribe-plaza">Caribe Plaza</ion-select-option> -->
+</ion-select>

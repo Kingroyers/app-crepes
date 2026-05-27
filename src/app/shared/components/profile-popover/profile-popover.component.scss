@@ -1,0 +1,128 @@
+.profile-pop {
+  padding: 6px 0;
+  min-width: 210px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+// ─── Info del usuario ─────────────────────────────────────────────────────
+.pop-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px 10px;
+}
+
+.pop-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #D4A574 0%, #6B4E3D 100%);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  flex-shrink: 0;
+  border: 2px solid rgba(107, 78, 61, 0.15);
+  user-select: none;
+
+  &--photo {
+    object-fit: cover;
+    background: none;
+  }
+}
+
+.pop-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 2px;
+}
+
+.pop-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1F1F1F;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pop-dept {
+  font-size: 12px;
+  color: #9E7B66;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// ─── Divider ──────────────────────────────────────────────────────────────
+.pop-divider {
+  height: 1px;
+  background: #F0E5DC;
+  margin: 4px 10px;
+}
+
+// ─── Items ────────────────────────────────────────────────────────────────
+.pop-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1F1F1F;
+  transition: background 0.15s ease;
+  font-family: inherit;
+  margin: 0 4px;
+  width: calc(100% - 8px);
+  border-radius: 8px;
+
+  &:active {
+    background: rgba(107, 78, 61, 0.07);
+  }
+
+  &--danger {
+    color: #D9534F;
+
+    &:active {
+      background: rgba(217, 83, 79, 0.07);
+    }
+  }
+}
+
+.pop-icon-wrap {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(107, 78, 61, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  ion-icon {
+    font-size: 17px;
+    color: #6B4E3D;
+  }
+
+  &--danger {
+    background: rgba(217, 83, 79, 0.1);
+
+    ion-icon {
+      color: #D9534F;
+    }
+  }
+}
+
+.pop-arrow {
+  font-size: 13px;
+  color: #C4A090;
+  margin-left: auto;
+}

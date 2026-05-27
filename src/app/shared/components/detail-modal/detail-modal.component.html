@@ -1,0 +1,211 @@
+<div class="dm-root">
+
+  <!-- ── HEADER ─────────────────────────────────── -->
+  <div class="dm-header" [class.dm-header--tarea]="!isEvent">
+    <div class="dm-handle"></div>
+
+    <div class="dm-header-top">
+      <div class="dm-badge">
+        <ion-icon [name]="isEvent ? 'calendar-outline' : 'checkmark-circle-outline'"></ion-icon>
+        <span>{{ isEvent ? 'Evento' : 'Tarea' }}</span>
+      </div>
+      <ion-button fill="clear" class="dm-close" (click)="closeModal()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </div>
+
+    <!-- Modo un único ítem -->
+    @if (isSingle) {
+      <p class="dm-greeting">
+        {{ isEvent ? 'Este es tu evento' : 'Esta es tu tarea' }}
+      </p>
+      <div class="dm-title-row">
+        <h1 class="dm-title">{{ firstItem.title }}</h1>
+        @if (isOwner) {
+          <div class="dm-actions">
+            <ion-button fill="solid" size="small" class="dm-edit-btn" (click)="editItem()">
+              <ion-icon name="pencil-outline" slot="start"></ion-icon>
+              Editar
+            </ion-button>
+            <ion-button fill="solid" size="small" class="dm-delete-btn" (click)="deleteItem()">
+              <ion-icon name="trash-outline" slot="start"></ion-icon>
+              Eliminar
+            </ion-button>
+          </div>
+        }
+      </div>
+    }
+
+    <!-- Modo lista -->
+    @if (!isSingle) {
+      <p class="dm-greeting">Tienes {{ items.length }} {{ isEvent ? 'eventos' : 'tareas' }} este día</p>
+    }
+  </div>
+
+  <!-- ── CONTENIDO ──────────────────────────────── -->
+  <ion-content class="dm-content">
+
+    <!-- ══ VISTA DETALLE (un solo ítem) ══ -->
+    @if (isSingle) {
+      <!-- EVENTO -->
+      @if (isEvent) {
+        <div class="dm-section">
+          <div class="dm-row">
+            <span class="dm-row-icon">
+              <ion-icon name="calendar-outline"></ion-icon>
+            </span>
+            <div>
+              <span class="dm-row-label">Fecha</span>
+              <span class="dm-row-val">{{ asEvent(firstItem).start | date:'EEEE d \'de\' MMMM yyyy' }}</span>
+            </div>
+          </div>
+          <div class="dm-row">
+            <span class="dm-row-icon">
+              <ion-icon name="time-outline"></ion-icon>
+            </span>
+            <div>
+              <span class="dm-row-label">Horario</span>
+              <span class="dm-row-val">
+                {{ asEvent(firstItem).start | date:'HH:mm' }} – {{ asEvent(firstItem).end | date:'HH:mm' }}
+              </span>
+            </div>
+          </div>
+          <div class="dm-row">
+            <span class="dm-row-icon">
+              <ion-icon name="location-outline"></ion-icon>
+            </span>
+            <div>
+              <span class="dm-row-label">Punto de Venta</span>
+              <span class="dm-row-val">{{ asEvent(firstItem).pdv }}</span>
+            </div>
+          </div>
+          <div class="dm-row">
+            <span class="dm-row-icon">
+              <ion-icon name="business-outline"></ion-icon>
+            </span>
+            <div>
+              <span class="dm-row-label">Área / Departamento</span>
+              <span class="dm-row-val">{{ asEvent(firstItem).department }}</span>
+            </div>
+          </div>
+          <div class="dm-row">
+            <span class="dm-row-icon">
+              <ion-icon name="person-outline"></ion-icon>
+            </span>
+            <div>
+              <span class="dm-row-label">Responsable</span>
+              <span class="dm-row-val">{{ asEvent(firstItem).responsible }}</span>
+            </div>
+          </div>
+        </div>
+        @if (asEvent(firstItem).description) {
+          <div class="dm-desc-card">
+            <p class="dm-desc-label">Descripción</p>
+            <p class="dm-desc-text">{{ asEvent(firstItem).description }}</p>
+          </div>
+        }
+      }
+      <!-- TAREA -->
+      @if (!isEvent) {
+        <div class="dm-section">
+          <div class="dm-row">
+            <span class="dm-row-icon">
+              <ion-icon name="calendar-outline"></ion-icon>
+            </span>
+            <div>
+              <span class="dm-row-label">Fecha límite</span>
+              <span class="dm-row-val">{{ asTask(firstItem).limitDate | date:'EEEE d \'de\' MMMM yyyy · HH:mm' }}</span>
+            </div>
+          </div>
+          @if (asTask(firstItem).link) {
+            <div class="dm-row">
+              <span class="dm-row-icon">
+                <ion-icon name="link-outline"></ion-icon>
+              </span>
+              <div>
+                <span class="dm-row-label">Enlace</span>
+                <a class="dm-link" [href]="asTask(firstItem).link" target="_blank" rel="noopener noreferrer">{{ asTask(firstItem).link }}</a>
+              </div>
+            </div>
+          }
+          <div class="dm-row">
+            <span class="dm-row-icon">
+              <ion-icon name="alert-circle-outline"></ion-icon>
+            </span>
+            <div>
+              <span class="dm-row-label">Prioridad</span>
+              <span class="dm-row-val dm-priority" [class.dm-priority--high]="asTask(firstItem).important === 'si'">
+                {{ asTask(firstItem).important === 'si' ? 'Alta prioridad' : 'Normal' }}
+              </span>
+            </div>
+          </div>
+          <div class="dm-row">
+            <span class="dm-row-icon">
+              <ion-icon name="person-outline"></ion-icon>
+            </span>
+            <div>
+              <span class="dm-row-label">Responsable</span>
+              <span class="dm-row-val">{{ asTask(firstItem).ownerName }}</span>
+            </div>
+          </div>
+        </div>
+        @if (asTask(firstItem).description) {
+          <div class="dm-desc-card">
+            <p class="dm-desc-label">Descripción</p>
+            <p class="dm-desc-text">{{ asTask(firstItem).description }}</p>
+          </div>
+        }
+      }
+    }
+
+    <!-- ══ VISTA LISTA (múltiples ítems) ══ -->
+    @if (!isSingle) {
+      @for (item of items; track item) {
+        <div class="dm-list-card" (click)="selectItem(item)">
+          <div class="dm-list-head">
+            <span class="dm-list-title">{{ item.title }}</span>
+            @if (isEvent) {
+              <span class="dm-list-date">
+                {{ asEvent(item).start | date:'HH:mm' }} – {{ asEvent(item).end | date:'HH:mm' }}
+              </span>
+            }
+            @if (!isEvent) {
+              <span class="dm-list-date">
+                {{ asTask(item).limitDate | date:'d MMM' }}
+              </span>
+            }
+          </div>
+          @if (isEvent) {
+            <div class="dm-list-meta">
+              <span class="dm-chip">
+                <ion-icon name="location-outline"></ion-icon> {{ asEvent(item).pdv }}
+              </span>
+              <span class="dm-chip">
+                <ion-icon name="business-outline"></ion-icon> {{ asEvent(item).department }}
+              </span>
+            </div>
+          }
+          @if (!isEvent) {
+            <div class="dm-list-meta">
+              <span class="dm-chip" [class.dm-chip--urgent]="asTask(item).important === 'si'">
+                <ion-icon name="alert-circle-outline"></ion-icon>
+                {{ asTask(item).important === 'si' ? 'Alta prioridad' : 'Normal' }}
+              </span>
+            </div>
+          }
+          @if (isEvent && asEvent(item).description) {
+            <p class="dm-list-desc">
+              {{ asEvent(item).description }}
+            </p>
+          }
+          @if (!isEvent && asTask(item).description) {
+            <p class="dm-list-desc">
+              {{ asTask(item).description }}
+            </p>
+          }
+        </div>
+      }
+    }
+
+  </ion-content>
+</div>

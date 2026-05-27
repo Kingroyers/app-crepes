@@ -1,0 +1,57 @@
+<ion-header class="modal-header">
+  <ion-toolbar>
+    <img class="logo-photo" src="../../../assets/imgPrueba/crepesLogo.png" alt="Foto logo" />
+
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="closeModal()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="modal-content">
+  <div class="modal-card" role="button" tabindex="0" (click)="selectType('evento')">
+    <div class="card-header">
+      <ion-text class="card-title">Evento</ion-text>
+      <ion-text class="card-date">
+        {{ dateStr | date:'dd MMM yyyy' }}
+      </ion-text>
+    </div>
+
+    <ion-text class="card-description">
+      Agenga un evento en el calendadrio publico, para informar a todas las areas.
+    </ion-text>
+
+    <div class="card-footer">
+      <ion-text class="card-author">
+        Tipo: <strong>Evento</strong>
+      </ion-text>
+      <ion-button expand="block" class="action-button" (click)="selectType('evento')">
+        Crear evento
+      </ion-button>
+    </div>
+  </div>
+
+  <div class="modal-card" role="button" tabindex="0" (click)="selectType('tarea')">
+    <div class="card-header">
+      <ion-text class="card-title">Tarea</ion-text>
+      <ion-text class="card-date">
+        {{ dateStr | date:'dd MMM yyyy' }}
+      </ion-text>
+    </div>
+
+    <ion-text class="card-description">
+      Crea una tarea privada para evitar olvidarla.
+    </ion-text>
+
+    <div class="card-footer">
+      <ion-text class="card-author">
+        Tipo: <strong>Tarea</strong>
+      </ion-text>
+      <ion-button expand="block" class="action-button" (click)="selectType('tarea')">
+        Crear tarea
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

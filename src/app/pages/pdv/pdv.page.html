@@ -1,0 +1,31 @@
+
+<ion-content>
+
+  @for (item of pdvs; track item) {
+    <ion-card (click)="goTo()" class="dm-card-limpia">
+      <div class="dm-list-card">
+        <div class="dm-list-head">
+          <span class="dm-list-title">{{ item.name }}</span>
+        <span class="dm-status-badge" [ngClass]="{
+            'is-abierto': item.status === 'abierto',
+            'is-cerrado': item.status === 'cerrado',
+            'is-extraordinario': item.status === 'extraordinario'
+          }">
+            {{ item.status }}
+          </span>
+        </div>
+        <div class="dm-list-meta">
+          <span class="dm-schedule-chip">
+            <ion-icon name="time-outline"></ion-icon>
+            Horario: {{ item.opened }} - {{ item.closed }}
+          </span>
+        </div>
+        @if (item.state != null) {
+          <div class="dm-list-meta">
+          </div>
+        }
+      </div>
+    </ion-card>
+  }
+
+</ion-content>

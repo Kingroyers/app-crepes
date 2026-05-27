@@ -1,0 +1,80 @@
+/* Fondo general */
+ion-content {
+  --background: #f5f6f8;
+}
+
+/* Tarjeta principal */
+ion-card {
+  margin: 16px;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  background: #ffffff;
+}
+
+/* Espaciado interno */
+ion-card-content {
+  padding: 18px;
+}
+
+/* Estilo general de los items */
+ion-item {
+  --background: #f8f9fb;
+  --border-radius: 14px;
+  --padding-start: 14px;
+  --inner-padding-end: 14px;
+  margin-bottom: 14px;
+  border-radius: 14px;
+}
+
+/* Inputs y textarea */
+// ion-input,
+// ion-textarea {
+//   --color: #2d3436;
+//   font-size: 15px;
+// }
+
+/* Select */
+// ion-select {
+//   --color: #2d3436;
+//   font-size: 15px;
+// }
+
+/* Etiquetas flotantes */
+ion-label {
+  color: #7a7a7a !important;
+  font-weight: 500;
+}
+
+/* Botón datetime */
+ion-datetime-button::part(native) {
+  background: #f1f2f6;
+  border-radius: 12px;
+  padding: 8px 12px;
+  color: #2d3436;
+  font-weight: 500;
+}
+
+/* Botón guardar */
+ion-button {
+  margin-top: 20px;
+  --background: #6b4f3a; /* color similar al header */
+  --border-radius: 14px;
+  height: 48px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 6px 16px rgba(107, 79, 58, 0.25);
+}
+
+/* Efecto al presionar */
+ion-button:active {
+  transform: scale(0.98);
+}
+
+/* Ajuste para pantallas grandes */
+@media (min-width: 768px) {
+  ion-card {
+    margin: 24px auto;
+    max-width: 500px;
+  }
+}

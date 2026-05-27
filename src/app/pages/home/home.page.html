@@ -1,0 +1,30 @@
+<app-header>
+</app-header>
+
+<ion-content>
+  @if (showNotificationBanner) {
+    <div class="fcm-banner">
+      <ion-icon name="notifications-outline"></ion-icon>
+      <span>Activa las notificaciones para estar al tanto de tus visitas y tareas.</span>
+      <ion-button size="small" fill="solid" (click)="enableNotifications()">Activar</ion-button>
+      <ion-button size="small" fill="clear" (click)="dismissBanner()">Ahora no</ion-button>
+    </div>
+  }
+  <div class="content-container">
+
+
+    <div class="text-container">
+      <app-texts> </app-texts>
+    </div>
+
+    <div >
+
+      <app-calendar class="carta"></app-calendar>
+
+    </div>
+
+
+  </div>
+</ion-content>
+
+
