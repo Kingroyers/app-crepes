@@ -1,9 +1,12 @@
 <ion-menu contentId="main-content" side="end" menuId="main-menu">
-
   <!-- ─── Header ────────────────────────────────────────────────────────── -->
   <div class="menu-header">
     <div class="menu-brand">
-      <img class="brand-logo" src="assets/imgPrueba/crepesLogo.png" alt="Crepes & Waffles" />
+      <img
+        class="brand-logo"
+        src="assets/imgPrueba/crepesLogo.png"
+        alt="Crepes & Waffles"
+      />
       <div class="brand-info">
         <span class="brand-name">C&amp;W</span>
         <span class="brand-sub">Gestión Integral</span>
@@ -16,7 +19,6 @@
 
   <!-- ─── Contenido ─────────────────────────────────────────────────────── -->
   <ion-content class="menu-content">
-
     <p class="section-label">Navegación</p>
     <div class="nav-group">
       <button class="nav-item" (click)="navigate('/home')">
@@ -42,7 +44,7 @@
         <span class="nav-label">Tareas</span>
         <ion-icon name="chevron-forward-outline" class="nav-arrow"></ion-icon>
       </button>
-      
+
       <!-- <button class="nav-item" (click)="navigate('/sacanner-page')">
         <div class="nav-icon-wrap">
           <ion-icon name="qr-code-outline"></ion-icon>
@@ -52,36 +54,109 @@
       </button> -->
 
       <!-- BOTONES ADMINISTRATIVOS -->
-      @if (userRole === 'admin' || userRole === 'super-admin' || userRole === 'jefe' ) {
-      <button class="nav-item admin-item" (click)="navigate('/start-visit')">
-        <div class="nav-icon-wrap">
-          <ion-icon name="calendar-number-outline"></ion-icon>
-        </div>
-        <span class="nav-label">Crear Visita</span>
-        <ion-icon name="chevron-forward-outline" class="nav-arrow"></ion-icon>
-      </button>
+      @if (
+        userRole === "admin" ||
+        userRole === "super-admin" ||
+        userRole === "jefe" ||
+        userRole === "supervisor-mantenimiento" ||
+        userRole === "tecnico"
+      ) {
+        <button class="nav-item admin-item" (click)="navigate('/start-visit')">
+          <div class="nav-icon-wrap">
+            <ion-icon name="calendar-number-outline"></ion-icon>
+          </div>
+          <span class="nav-label">Crear Visita</span>
+          <ion-icon name="chevron-forward-outline" class="nav-arrow"></ion-icon>
+        </button>
       }
 
-      @if (userRole === 'super-admin') {
-      <button class="nav-item super-admin-item" (click)="navigate('/admin')">
-        <div class="nav-icon-wrap">
-          <ion-icon name="briefcase-outline"></ion-icon>
-        </div>
-        <span class="nav-label">Panel administrativo</span>
-        <ion-icon name="chevron-forward-outline" class="nav-arrow"></ion-icon>
-      </button>
+      @if (userRole === "super-admin") {
+        <button class="nav-item super-admin-item" (click)="navigate('/admin')">
+          <div class="nav-icon-wrap">
+            <ion-icon name="briefcase-outline"></ion-icon>
+          </div>
+          <span class="nav-label">Panel administrativo</span>
+          <ion-icon name="chevron-forward-outline" class="nav-arrow"></ion-icon>
+        </button>
+        <button
+          class="nav-item super-admin-item"
+          (click)="navigate('/manage-user')"
+        >
+          <div class="nav-icon-wrap">
+            <ion-icon name="people-outline"></ion-icon>
+          </div>
+          <span class="nav-label">Gestión Usuarios</span>
+          <ion-icon name="chevron-forward-outline" class="nav-arrow"></ion-icon>
+        </button>
+
+        <button class="nav-item" (click)="navigate('/scanner-page')">
+          <div class="nav-icon-wrap">
+            <ion-icon name="qr-code-outline"> </ion-icon>
+          </div>
+          <span class="nav-label">Escáner</span>
+          <ion-icon name="chevron-forward-outline" class="nav-arrow"></ion-icon>
+        </button>
+        <button class="nav-item" (click)="navigate('/equipment-detail')">
+          <div class="nav-icon-wrap">
+            <ion-icon name="apps-outline"></ion-icon>
+          </div>
+          <span class="nav-label">Detallado de Equipos</span>
+          <ion-icon name="chevron-forward-outline" class="nav-arrow"></ion-icon>
+        </button>
+
+        <button class="nav-item" (click)="navigate('/item-management')">
+          <div class="nav-icon-wrap">
+            <ion-icon name="file-tray-stacked-outline"></ion-icon>
+          </div>
+          <span class="nav-label">Activos Fijos</span>
+          <ion-icon name="chevron-forward-outline" class="nav-arrow"></ion-icon>
+        </button>
       }
 
-      @if (userRole === 'super-admin') {
-      <button class="nav-item super-admin-item" (click)="navigate('/manage-user')">
-        <div class="nav-icon-wrap">
-          <ion-icon name="people-outline"></ion-icon>
-        </div>
-        <span class="nav-label">Gestión Usuarios</span>
-        <ion-icon name="chevron-forward-outline" class="nav-arrow"></ion-icon>
-      </button>
+      <!-- Solo para supervisor de  mantenimiento-->
+      @if (userRole === "supervisor-mantenimiento") {
+        <button class="nav-item" (click)="navigate('/scanner-page')">
+          <div class="nav-icon-wrap">
+            <ion-icon name="qr-code-outline"> </ion-icon>
+          </div>
+          <span class="nav-label">Escáner</span>
+          <ion-icon name="chevron-forward-outline" class="nav-arrow"></ion-icon>
+        </button>
+        <button class="nav-item" (click)="navigate('/equipment-detail')">
+          <div class="nav-icon-wrap">
+            <ion-icon name="apps-outline"></ion-icon>
+          </div>
+          <span class="nav-label">Detallado de Equipos</span>
+          <ion-icon name="chevron-forward-outline" class="nav-arrow"></ion-icon>
+        </button>
+
+        <button class="nav-item" (click)="navigate('/item-management')">
+          <div class="nav-icon-wrap">
+            <ion-icon name="file-tray-stacked-outline"></ion-icon>
+          </div>
+          <span class="nav-label">Activos Fijos</span>
+          <ion-icon name="chevron-forward-outline" class="nav-arrow"></ion-icon>
+        </button>
       }
 
+      <!-- opciones tecnico -->
+
+      @if (userRole === "tecnico") {
+        <button class="nav-item" (click)="navigate('/scanner-page')">
+          <div class="nav-icon-wrap">
+            <ion-icon name="qr-code-outline"> </ion-icon>
+          </div>
+          <span class="nav-label">Escáner</span>
+          <ion-icon name="chevron-forward-outline" class="nav-arrow"></ion-icon>
+        </button>
+        <button class="nav-item" (click)="navigate('/equipment-detail')">
+          <div class="nav-icon-wrap">
+            <ion-icon name="apps-outline"></ion-icon>
+          </div>
+          <span class="nav-label">Detallado de Equipos</span>
+          <ion-icon name="chevron-forward-outline" class="nav-arrow"></ion-icon>
+        </button>
+      }
     </div>
 
     <p class="section-label">Herramientas</p>
@@ -110,7 +185,6 @@
         <span class="coming-badge">Pronto</span>
       </button>
     </div>
-
   </ion-content>
 
   <!-- ─── Footer ────────────────────────────────────────────────────────── -->
@@ -121,5 +195,4 @@
       <span>Cerrar sesión</span>
     </button>
   </div>
-
 </ion-menu>

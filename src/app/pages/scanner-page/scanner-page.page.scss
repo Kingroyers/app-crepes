@@ -1,0 +1,347 @@
+// Paleta de colores basada en la referencia
+$text-dark: #3E2723;
+$bg-light: #F8F6F6;
+$accent-brown: #5D4037;
+$border-color: #4E342E;
+$badge-bg: #FBE9E7;
+$badge-text: #D84315;
+
+// Estilos generales de la página
+ion-content.custom-content {
+  --background: #{$bg-light};
+}
+
+ion-toolbar.custom-toolbar {
+  --background: #{$bg-light};
+  ion-title {
+    font-weight: 600;
+    color: $text-dark;
+  }
+  ion-back-button {
+    color: $text-dark;
+  }
+}
+
+// Selector de Cámara
+.camera-section {
+  margin-bottom: 20px;
+
+  .section-label {
+    font-size: 0.85rem;
+    color: $text-dark;
+    margin-bottom: 8px;
+    display: block;
+    padding-left: 4px;
+  }
+
+  .camera-select-item {
+    --background: #EFEBE9;
+    --border-radius: 8px;
+
+    ion-icon {
+      color: $text-dark;
+    }
+    ion-select {
+      color: $text-dark;
+      width: 100%;
+    }
+  }
+}
+
+
+// Contenedor del Escáner
+.scanner-wrapper {
+  position: relative;
+  width: 100%;
+
+  // 1. Cambiamos la altura fija por una proporción cuadrada o rectangular
+  aspect-ratio: 4 / 3; // Un formato más natural para cámaras. Puedes usar 1 / 1 para que sea totalmente cuadrado.
+  max-height: 320px;   // Reducimos el límite de altura para que no se vea gigante
+
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  zxing-scanner {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex;
+
+    // 2. Forzamos al video interno a que cubra todo el contenedor
+    ::ng-deep video {
+      object-fit: cover !important;
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+}
+
+
+// // Contenedor del Escáner
+// .scanner-wrapper {
+//   position: relative;
+//   width: 100%;
+//   height: 400px;
+//   border-radius: 28px;
+//   overflow: hidden;
+//   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+//   background: #000;
+
+//   zxing-scanner {
+//     width: 100% !important;
+//     height: 100% !important;
+//     object-fit: cover;
+//   }
+// }
+
+// Capa superior (Marcos y botón)
+.scanner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; // Permite que zxing-scanner reciba toques si es necesario
+
+  .corner {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-color: $border-color;
+    border-style: solid;
+    border-width: 0;
+
+    &.top-left {
+      top: 15%;
+      left: 10%;
+      border-top-width: 3px;
+      border-left-width: 3px;
+      border-top-left-radius: 12px;
+    }
+    &.top-right {
+      top: 15%;
+      right: 10%;
+      border-top-width: 3px;
+      border-right-width: 3px;
+      border-top-right-radius: 12px;
+    }
+    &.bottom-left {
+      bottom: 15%;
+      left: 10%;
+      border-bottom-width: 3px;
+      border-left-width: 3px;
+      border-bottom-left-radius: 12px;
+    }
+    &.bottom-right {
+      bottom: 15%;
+      right: 10%;
+      border-bottom-width: 3px;
+      border-right-width: 3px;
+      border-bottom-right-radius: 12px;
+    }
+  }
+
+  .scan-line {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    width: 90%;
+    height: 2px;
+    background: $border-color;
+    box-shadow: 0 0 6px rgba(78, 52, 46, 0.4);
+  }
+
+  .flash-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.85);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+    ion-icon {
+      font-size: 22px;
+      color: $text-dark;
+    }
+  }
+}
+
+// Textos e Información
+.instruction-text {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #666;
+  margin: 16px 0 24px;
+  line-height: 1.4;
+}
+
+.info-section {
+  .section-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: $text-dark;
+    margin-bottom: 16px;
+  }
+}
+
+// Tarjeta de Datos Quemados
+.info-card {
+  background: #FFFFFF;
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+
+    .item-title {
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1A1A1A;
+    }
+    .item-id {
+      margin: 4px 0 0;
+      font-size: 0.85rem;
+      color: #777;
+    }
+
+    .status-badge {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: $badge-bg;
+      color: $badge-text;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+
+      ion-icon {
+        font-size: 1rem;
+      }
+    }
+  }
+
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; // Esto divide el espacio en dos partes exactamente iguales
+  gap: 20px 16px;
+  margin-bottom: 28px;
+  width: 100%; // Asegura que ocupe todo el ancho de la tarjeta blanca
+
+  .info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0; // Obligatorio para que el texto se recorte y no ensanche la columna
+    width: 100%;  // Fuerza a que cada item use su mitad del grid
+
+    .info-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #888;
+      font-weight: 600;
+      white-space: normal;
+      // Quitamos nowrap de aquí si lo tenías, para que la etiqueta respire
+    }
+
+    .info-value {
+      font-size: 0.95rem;
+      color: #1A1A1A;
+      font-weight: 500;
+      display: block; // Cambiar a block ayuda al control de ancho
+
+      // Control de recorte
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+    }
+  }
+}
+
+  // .info-grid {
+  //   display: grid;
+  //   grid-template-columns: 1fr 1fr;
+  //   gap: 20px 16px;
+  //   margin-bottom: 28px;
+
+  //   .info-item {
+  //     display: flex;
+  //     flex-direction: column;
+  //     gap: 4px;
+
+  //     .info-label {
+  //       font-size: 0.7rem;
+  //       text-transform: uppercase;
+  //       letter-spacing: 0.5px;
+  //       color: #888;
+  //     }
+  //     .info-value {
+  //       font-size: 0.95rem;
+  //       color: #1A1A1A;
+  //       font-weight: 500;
+  //     }
+  //   }
+  // }
+
+  .no-history {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 24px 0;
+    color: #BCAAA4;
+
+    ion-icon {
+      font-size: 2.5rem;
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #BCAAA4;
+    }
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: 12px;
+
+    ion-button {
+      margin: 0;
+      flex: 1;
+      --border-radius: 10px;
+      --box-shadow: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+
+      &.btn-primary {
+        --background: #{$accent-brown};
+        --color: white;
+      }
+      &.btn-secondary {
+        --background: #EFEBE9;
+        --color: #1A1A1A;
+      }
+    }
+  }
+}
