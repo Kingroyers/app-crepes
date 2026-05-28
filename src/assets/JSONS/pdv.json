@@ -1,50 +1,39 @@
 [
   {
-    "pdv": "san-martín",
-    "pdvF": "San Martín"
+    "ciudad": "cartagena",
+    "ciudadF": "Cartagena",
+    "pdvs": [
+      { "pdv": "san-martín", "pdvF": "San Martín" },
+      { "pdv": "plaza-bocagrande", "pdvF": "Plaza Bocagrande" },
+      { "pdv": "san-juan", "pdvF": "San Juan" },
+      { "pdv": "san-pedro", "pdvF": "San Pedro" },
+      { "pdv": "san-diego", "pdvF": "San Diego" },
+      { "pdv": "serrezuela", "pdvF": "Serrezuela" },
+      { "pdv": "mall-plaza", "pdvF": "Mall Plaza" },
+      { "pdv": "caribe-plaza", "pdvF": "Caribe Plaza" },
+      { "pdv": "oficinas-administrativas", "pdvF": "Oficinas Administrativas" }
+    ]
   },
   {
-    "pdv": "plaza-bocagrande",
-    "pdvF": "Plaza Bocagrande"
+    "ciudad": "barranquilla",
+    "ciudadF": "Barranquilla",
+    "pdvs": [
+      { "pdv": "parque-alegra", "pdvF": "Parque Alegra" },
+      { "pdv": "portal-del-prado", "pdvF": "Portal del Prado" },
+      { "pdv": "alto-prado", "pdvF": "Alto Prado" },
+      { "pdv": "le-Meridiem-golf", "pdvF": "Le Meridiem Golf" },
+      { "pdv": "viva", "pdvF": "Viva" },
+      { "pdv": "buenavista-1", "pdvF": "Buenavista I" },
+      { "pdv": "heladeria-buenavista-2", "pdvF": "Heladería Buenavista II" }
+    ]
   },
   {
-    "pdv": "san-juan",
-    "pdvF": "San Juan"
-  },
-  {
-    "pdv": "san-pedro",
-    "pdvF": "San Pedro"
-  },
-  {
-    "pdv": "san-diego",
-    "pdvF": "San Diego"
-  },
-  {
-    "pdv": "serrezuela",
-    "pdvF": "Serrezuela"
-  },
-  {
-    "pdv": "mall-plaza",
-    "pdvF": "Mall Plaza"
-  },
-  {
-    "pdv": "caribe-plaza",
-    "pdvF": "Caribe plaza"
-  },
-  {
-    "pdv": "oficinas-administrativas",
-    "pdvF": "Oficinas administrivas"
-  },
-  {
-    "pdv": "zazue",
-    "pdvF": "Zazue"
-   },
-   {
-    "pdv": "casacentro",
-    "pdvF": "Casacentro"
-  },
-  {
-    "pdv": "buena-vista",
-    "pdvF": "Buena vista"
+    "ciudad": "santa-marta",
+    "ciudadF": "Santa Marta",
+    "pdvs": [
+     { "pdv": "zazue", "pdvF": "Zazue" },
+      { "pdv": "casacentro", "pdvF": "Casacentro" },
+      { "pdv": "buena-vista", "pdvF": "Buena Vista" }
+    ]
   }
 ]

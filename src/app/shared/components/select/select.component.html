@@ -1,20 +1,39 @@
-<ion-select
-  [label]="label"
-  label-placement="floating"
-  [id]="id"
-  (ionChange)='onSelect($event)'
-
+@if (id === 'pdvs') {
+  <!-- Selector de Ciudad -->
+  <ion-select
+    label="Ciudad"
+    label-placement="floating"
+    (ionChange)="onCiudadSelect($event)"
   >
-  @for (item of usable; track item) {
-    <ion-select-option
-    [value]="item[labelKey]">{{item[labelKey]}}</ion-select-option>
+    @for (ciudad of ciudades; track ciudad.ciudad) {
+      <ion-select-option [value]="ciudad.ciudad">{{ ciudad.ciudadF }}</ion-select-option>
+    }
+  </ion-select>
+
+  <!-- Selector de PDV (aparece luego de elegir ciudad) -->
+  @if (mostrarPdvs) {
+    <ion-select
+      [label]="label"
+      label-placement="floating"
+      [id]="id"
+      (ionChange)="onPdvSelect($event)"
+    >
+      @for (pdv of pdvsFiltrados; track pdv.pdv) {
+        <ion-select-option [value]="pdv.pdvF">{{ pdv.pdvF }}</ion-select-option>
+      }
+    </ion-select>
   }
-  <!-- <ion-select-option value="plaza-bocagrande">Plaza Bocagrande</ion-select-option>
-  <ion-select-option value="san-juan">San Juan</ion-select-option>
-  <ion-select-option value="san-pedro">San Pedro</ion-select-option>
-  <ion-select-option value="san-diego">San Diego</ion-select-option>
-  <ion-select-option value="serrezuel">Serrezuela</ion-select-option>
-  <ion-select-option value="mall-plaza">Mall Plaza</ion-select-option>
-  <ion-select-option value="mall-plaza">Mall Plaza</ion-select-option>
-  <ion-select-option value="caribe-plaza">Caribe Plaza</ion-select-option> -->
-</ion-select>
+
+} @else {
+  <!-- Selector de Área -->
+  <ion-select
+    [label]="label"
+    label-placement="floating"
+    [id]="id"
+    (ionChange)="onSelect($event)"
+  >
+    @for (item of usable; track item) {
+      <ion-select-option [value]="item[labelKey]">{{ item[labelKey] }}</ion-select-option>
+    }
+  </ion-select>
+}

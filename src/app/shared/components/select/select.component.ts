@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IArea, IPdv } from '../../../interfaces/pdv.interface';
+import { IArea, ICiudad, IPdv } from '../../../interfaces/pdv.interface';
 import { Categories } from '../../services/jsonsProviders';
 import { FormControl } from '@angular/forms';
 
@@ -7,64 +7,55 @@ import { FormControl } from '@angular/forms';
   selector: 'app-select',
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.scss'],
-  standalone:false
+  standalone: false
 })
-export class SelectComponent  implements OnInit {
-@Input() label: string = '';
-@Input() id: string = '';
-@Input() control: FormControl = new FormControl();
+export class SelectComponent implements OnInit {
+  @Input() label: string = '';
+  @Input() id: string = '';
+  @Input() control: FormControl = new FormControl();
 
-valuekey: string = '';
-labelKey: string = '';
+  valuekey: string = '';
+  labelKey: string = '';
 
-usable: any[] = [];
+  usable: any[] = [];
+  ciudades: ICiudad[] = [];
+  pdvsFiltrados: IPdv[] = [];
+  areas: IArea[] = [];
 
- pdvs: IPdv[] = [];
-areas: IArea[] = [];
+  ciudadSeleccionada: string = '';
+  mostrarPdvs: boolean = false;
 
-  constructor(private readonly pdvSrv: Categories, private readonly areaSrv: Categories) { }
+  constructor(private readonly pdvSrv: Categories, private readonly areaSrv: Categories) {}
 
-   ngOnInit() {
-
-    //  this.areaSrv.getDepartment().subscribe(a =>{
-    //   this.areas = a;
-    // })
-
-    // this.pdvSrv.getPdv().subscribe(p => {
-    //    this.pdvs = p;
-
-
-    // })
-
+  ngOnInit() {
     if (this.id === 'pdvs') {
-
-       this.pdvSrv.getPdv().subscribe(p => {
-       this.pdvs = p;
-
-       this.usable = this.pdvs
-
-       this.valuekey = 'pdv';
-       this.labelKey = 'pdvF';
-    });
-
+      this.pdvSrv.getPdv().subscribe((data: ICiudad[]) => {
+        this.ciudades = data;
+      });
     } else {
-
-     this.areaSrv.getDepartment().subscribe(a =>{
-      this.areas = a;
-
-      this.usable = this.areas;
-
-      this.valuekey = 'area';
-      this.labelKey = 'areaF';
-    });
+      this.areaSrv.getDepartment().subscribe((a: IArea[]) => {
+        this.areas = a;
+        this.usable = this.areas;
+        this.valuekey = 'area';
+        this.labelKey = 'areaF';
+      });
     }
-
   }
 
+  onCiudadSelect(event: any) {
+    const ciudadKey = event.detail.value;
+    this.ciudadSeleccionada = ciudadKey;
+    const ciudad = this.ciudades.find(c => c.ciudad === ciudadKey);
+    this.pdvsFiltrados = ciudad ? ciudad.pdvs : [];
+    this.mostrarPdvs = this.pdvsFiltrados.length > 0;
+    this.control.setValue(null);
+  }
 
-public onSelect(event: any){
-this.control.setValue(event.detail.value);
-}
+  onPdvSelect(event: any) {
+    this.control.setValue(event.detail.value);
+  }
 
-
+  public onSelect(event: any) {
+    this.control.setValue(event.detail.value);
+  }
 }

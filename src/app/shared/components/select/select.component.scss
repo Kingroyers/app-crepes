@@ -6,3 +6,8 @@ ion-select {
 :host {
   width: 100%;
 }
+
+ion-select::part(placeholder),
+ion-select::part(text) {
+  color: tu-color;
+}
