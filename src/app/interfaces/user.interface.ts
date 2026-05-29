@@ -1,4 +1,4 @@
-export type userRoles = 'admin' | 'super-admin' | 'user' | 'jefe';
+export type userRoles = 'admin' | 'super-admin' | 'user' | 'jefe'|'supervisor-mantenimiento"'|'tecnico';
 export interface IUser {
   doc: string | '';
   uid: string;

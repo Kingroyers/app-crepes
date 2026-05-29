@@ -1,0 +1,128 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="custom-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" icon="arrow-back-outline" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Escáner de Control</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="custom-content ion-padding">
+
+  <!-- Selector de cámara -->
+  <div class="camera-section">
+    <ion-label class="section-label">Seleccionar Cámara</ion-label>
+    @if (availableDevice.length > 0) {
+      <ion-item lines="none" class="camera-select-item">
+        <ion-icon name="camera-outline" slot="start"></ion-icon>
+        <ion-select interface="popover" [value]="currentDevice?.deviceId" (ionChange)="onDeviceSelectChange($event)">
+          @for (device of availableDevice; track device) {
+            <ion-select-option [value]="device.deviceId">
+              {{ device.label || 'Cámara ' + device.deviceId }}
+            </ion-select-option>
+          }
+        </ion-select>
+      </ion-item>
+    }
+  </div>
+
+  <!-- Contenedor del Escáner -->
+  <div class="scanner-wrapper">
+    <zxing-scanner [device]="currentDevice" (camerasFound)="onCameraFound($event)" (scanSuccess)="onCodeResult($event)"
+      [formats]="allowedFormats">
+    </zxing-scanner>
+
+    <!-- Capa superior (Overlay) del escáner -->
+    <div class="scanner-overlay">
+      <!-- Esquinas del marco -->
+      <div class="corner top-left"></div>
+      <div class="corner top-right"></div>
+      <div class="corner bottom-left"></div>
+      <div class="corner bottom-right"></div>
+
+      <!-- Línea central de escaneo -->
+      <div class="scan-line"></div>
+
+      <!-- Botón de linterna (Opcional visualmente) -->
+      <button class="flash-btn">
+        <ion-icon name="flash-off-outline"></ion-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- Instrucción -->
+  <p class="instruction-text">
+    Posicione el código QR dentro del marco para<br>escanear automáticamente.
+  </p>
+
+
+  @if (equipoResult) {
+    <div class="info-section">
+      <h3 class="section-title">Información del Código</h3>
+      <div class="info-card">
+        <div class="card-header">
+          <div>
+            <h2 class="item-title">{{equipoResult.nombre_equipo}}</h2>
+            <p class="item-id">{{equipoResult.codigo_barras}}</p>
+          </div>
+          <div class="status-badge">
+            <ion-icon name="checkmark-circle-outline"></ion-icon> {{equipoResult.estado}}
+          </div>
+        </div>
+        <!-- Dentro de la sección info-grid -->
+         @if (historialResult) {
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="info-label">UBICACIÓN</span>
+            <span class="info-value"  [title]="equipoResult.ubicacion_equipo" >{{equipoResult.ubicacion_equipo}}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">ÚLTIMA REVISIÓN</span>
+            <span class="info-value">{{historialResult.fecha_visita | date:'dd MMM yyyy' }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">RESPONSABLE</span>
+            <span class="info-value" [title]="historialResult.area_realiza ?? ''">{{historialResult.area_realiza ?? 'Sin registro'}}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">PRÓXIMA REVISIÓN.</span>
+            <span class="info-value">{{historialResult.proximo_mantenimiento | date:'dd MMM yyyy' }}</span>
+          </div>
+        </div>
+      } @else {
+        <div class="no-history">
+          <ion-icon name="time-outline"></ion-icon>
+          <p>Equipo sin visitas previas</p>
+        </div>
+      }
+        <!-- <div class="info-item">
+        <span class="info-label">UBICACIÓN</span>
+        <span class="info-value">{{equipoResult.ubicacion_equipo}}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">ÚLTIMA REVISIÓN</span>
+        <span class="info-value">{{historialResult.fecha_visita}}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">RESPONSABLE</span>
+        <span class="info-value">{{historialResult.tecnico_nombre}}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">PRÓXIMO MANT.</span>
+        <span class="info-value">{{historialResult.proximo_mantenimiento}}</span>
+      </div> -->
+      <div class="action-buttons">
+        <ion-button (click)="goToItemManagment()" expand="block" class="btn-primary" mode="md">
+          <ion-icon slot="start" name="clipboard-outline"></ion-icon>
+          Registrar
+        </ion-button>
+        <ion-button (click)="goToEquipmentDetail()" expand="block" class="btn-secondary" mode="md">
+          <ion-icon slot="start" name="eye-outline"></ion-icon>
+          Detalles
+        </ion-button>
+      </div>
+    </div>
+  </div>
+}
+
+</ion-content>

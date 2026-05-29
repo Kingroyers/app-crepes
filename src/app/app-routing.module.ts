@@ -67,12 +67,22 @@ const routes: Routes = [
     data: { roles: ['admin', 'super-admin', 'jefe'] }
   },
   {
-    path: 'sacanner-page',
-    loadChildren: () => import('./pages/sacanner-page/sacanner-page.module').then( m => m.SacannerPagePageModule)
+    path: 'scanner-page',
+    loadChildren: () => import('./pages/scanner-page/scanner-page.module').then( m => m.ScannerPagePageModule),
+    canActivate: [RoleGuard],
+    data: { roles: ['admin', 'super-admin', 'jefe', 'mantenimiento','tecnico'] }
+  },
+   {
+    path: 'equipment-detail',
+    loadChildren: () => import('./pages/equipment-detail/equipment-detail.module').then( m =>m.EquipmentDetailPageModule ),
+    canActivate: [RoleGuard],
+    data: { roles: ['admin', 'super-admin', 'jefe', 'mantenimiento','tecnico'] }
   },
   {
     path: 'item-management',
-    loadChildren: () => import('./pages/item-management/item-management.module').then( m => m.ItemManagementPageModule)
+    loadChildren: () => import('./pages/item-management/item-management.module').then( m => m.ItemManagementPageModule),
+    canActivate: [RoleGuard],
+    data: { roles: ['admin', 'super-admin', 'supervisor-mantenimiento','tecnico'] }
   },
   {
     path: 'equipment-detail',
